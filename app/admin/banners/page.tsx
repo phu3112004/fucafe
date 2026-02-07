@@ -1,5 +1,6 @@
 "use client";
 
+import ImageUpload from "@/components/ImageUpload";
 import { useBanners } from "@/hooks/useBanners";
 
 export default function AdminBannersPage() {
@@ -17,23 +18,14 @@ export default function AdminBannersPage() {
         <h2 className="text-xl font-bold mb-4">Thêm Banner Mới</h2>
         <form
           onSubmit={addBanner} // Gọi hàm từ hook
-          className="grid grid-cols-1 md:grid-cols-2 gap-4"
+          className="grid grid-cols-1 md:grid-cols-1 gap-4"
         >
           <input
             type="text"
             placeholder="Tiêu đề (VD: Sale 50%)"
             className="border p-2 rounded"
             value={formData.title}
-            // Logic update state đã được gói gọn
             onChange={(e) => setFormValue("title", e.target.value)}
-          />
-          <input
-            type="text"
-            placeholder="Link ảnh (Copy từ trên mạng)"
-            className="border p-2 rounded"
-            required
-            value={formData.imageUrl}
-            onChange={(e) => setFormValue("imageUrl", e.target.value)}
           />
           <input
             type="text"
@@ -42,6 +34,7 @@ export default function AdminBannersPage() {
             value={formData.linkTo}
             onChange={(e) => setFormValue("linkTo", e.target.value)}
           />
+          <ImageUpload onUpload={(url) => setFormValue("imageUrl", url)} />
           <button
             type="submit"
             disabled={loading}
