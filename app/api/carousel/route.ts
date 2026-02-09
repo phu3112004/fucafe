@@ -3,11 +3,18 @@ import connectDB from "@/lib/mongodb";
 import Carousel from "@/lib/models/Carousel";
 
 export async function GET() {
-  await connectDB();
-  const carousels = await Carousel.find({ active: true }).sort({
-    createdAt: -1,
-  });
-  return NextResponse.json(carousels);
+  try {
+    await connectDB();
+    const carousels = await Carousel.find({ active: true }).sort({
+      createdAt: -1,
+    });
+    return NextResponse.json(carousels);
+  } catch (error) {
+    return NextResponse.json(
+      { message: "Lỗi lấy danh sách banner" },
+      { status: 500 },
+    );
+  }
 }
 
 export async function POST(req: Request) {

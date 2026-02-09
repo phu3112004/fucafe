@@ -7,6 +7,18 @@ const Products = () => {
   const { products, loading } = useProducts();
   const columns = [
     { title: "ID", dataIndex: "_id", key: "_id" },
+    {
+      title: "Image",
+      dataIndex: "image",
+      key: "image",
+      render: (image: string) => (
+        <img
+          src={image}
+          alt="Product Image"
+          className="w-16 h-16 object-cover rounded"
+        />
+      ),
+    },
     { title: "Name", dataIndex: "name", key: "name" },
     { title: "Price", dataIndex: "price", key: "price" },
     { title: "Category", dataIndex: "category", key: "category" },
