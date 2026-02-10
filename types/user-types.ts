@@ -5,4 +5,9 @@ interface User {
   imageUrl?: string;
   role: "admin" | "user";
 }
-export type { User };
+interface AuthState {
+  user: User | null;
+  login: (userData: User) => void;
+  logout: () => void;
+}
+export type { User, AuthState };

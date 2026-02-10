@@ -4,6 +4,7 @@ import Link from "next/link";
 import { useAuthStore } from "@/store/useAuthStore";
 import { usePathname } from "next/navigation";
 import { navItem } from "@/const/nav-const";
+import Cart from "@/components/Cart";
 
 const Header = () => {
   const user = useAuthStore((state) => state.user);
@@ -30,21 +31,24 @@ const Header = () => {
           {user ? (
             <>
               <li>
-                <span>Welcome, {user.name}</span>
+                <span>Chào, {user.name}</span>
+              </li>
+              <li>
+                <Cart />
               </li>
               <li>
                 <button onClick={() => useAuthStore.getState().logout()}>
-                  Log out
+                  Đăng xuất
                 </button>
               </li>
             </>
           ) : (
             <>
               <li>
-                <Link href="/login">Log in</Link>
+                <Link href="/login">Đăng nhập</Link>
               </li>
               <li>
-                <Link href="/signup">Sign up</Link>
+                <Link href="/signup">Đăng ký</Link>
               </li>
             </>
           )}
