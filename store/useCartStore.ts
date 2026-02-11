@@ -57,7 +57,36 @@ export const useCartStore = create<CartState>()(
           };
         });
       },
+
+      updateQuantity: (itemId: string, newQuantity: number) => {
+        set((state: any) => {
+          // 1. Tìm và cập nhật số lượng cho sản phẩm đó
+          const newItems = state.items.map((item: any) => {
+            if (item._id === itemId) {
+              return { ...item, quantity: newQuantity };
+            }
+            return item;
+          });
+
+          // 2. Tính toán lại tổng số lượng và tổng tiền từ đầu (cho chính xác)
+          const newTotalQuantity = newItems.reduce(
+            (acc: number, item: any) => acc + item.quantity,
+            0,
+          );
+          const newTotalPrice = newItems.reduce(
+            (acc: number, item: any) => acc + item.price * item.quantity,
+            0,
+          );
+
+          return {
+            items: newItems,
+            totalQuantity: newTotalQuantity,
+            totalPrice: newTotalPrice,
+          };
+        });
+      },
     }),
+
     {
       name: "fucafe-cart",
     },

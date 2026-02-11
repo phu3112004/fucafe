@@ -34,7 +34,9 @@ const Header = () => {
                 <span>Chào, {user.name}</span>
               </li>
               <li>
-                <Cart />
+                <Link href="/cart">
+                  <Cart />
+                </Link>
               </li>
               <li>
                 <button onClick={() => useAuthStore.getState().logout()}>

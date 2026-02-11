@@ -10,6 +10,7 @@ interface CartState {
   totalPrice: number;
   addItem: (item: CartItem) => void;
   removeItem: (itemId: string) => void;
+  updateQuantity: (itemId: string, newQuantity: number) => void;
 }
 
 export type { CartState, CartItem };

@@ -1,9 +1,12 @@
 import { Product } from "@/types/product-types";
 import { useCartStore } from "@/store/useCartStore";
+import { toast } from "sonner";
+
 const ProductCard = (product: Product) => {
   const addItem = useCartStore((state) => state.addItem);
 
   const handleAddToCart = () => {
+    toast.success("Đã thêm sản phẩm vào giỏ hàng!");
     addItem({ ...product, quantity: 1 });
   };
 
