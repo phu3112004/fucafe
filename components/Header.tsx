@@ -5,6 +5,7 @@ import { useAuthStore } from "@/store/useAuthStore";
 import { usePathname } from "next/navigation";
 import { navItem } from "@/const/nav-const";
 import Cart from "@/components/Cart";
+import Auth from "@/components/Auth";
 
 const Header = () => {
   const user = useAuthStore((state) => state.user);
@@ -27,21 +28,16 @@ const Header = () => {
             </li>
           ))}
         </ul>
-        <ul className="flex gap-4">
+        <ul className="flex gap-8">
           {user ? (
             <>
-              <li>
-                <span>Chào, {user.name}</span>
-              </li>
               <li>
                 <Link href="/cart">
                   <Cart />
                 </Link>
               </li>
               <li>
-                <button onClick={() => useAuthStore.getState().logout()}>
-                  Đăng xuất
-                </button>
+                <Auth />
               </li>
             </>
           ) : (

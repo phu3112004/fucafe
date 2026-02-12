@@ -11,7 +11,9 @@ export const useAuthStore = create<AuthState>()(
       login: (userData) => set({ user: userData }),
 
       // Hành động Đăng xuất: Xóa user, về null
-      logout: () => set({ user: null }),
+      logout: () => {
+        set({ user: null });
+      },
     }),
     {
       name: "fucafe-auth", // Tên key lưu trong LocalStorage

@@ -11,6 +11,7 @@ interface CartState {
   addItem: (item: CartItem) => void;
   removeItem: (itemId: string) => void;
   updateQuantity: (itemId: string, newQuantity: number) => void;
+  clearCart: () => void;
 }
 
 export type { CartState, CartItem };

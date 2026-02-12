@@ -85,6 +85,14 @@ export const useCartStore = create<CartState>()(
           };
         });
       },
+
+      clearCart: () => {
+        set({
+          items: [],
+          totalQuantity: 0,
+          totalPrice: 0,
+        });
+      },
     }),
 
     {
