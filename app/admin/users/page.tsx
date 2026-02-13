@@ -5,7 +5,7 @@ import { useUsers } from "@/hooks/useUsers";
 const Users = () => {
   const { users, loading } = useUsers();
   const columns = [
-    { title: "ID", dataIndex: "_id", key: "_id" },
+    { title: "ID", dataIndex: "id", key: "id" },
     { title: "Name", dataIndex: "name", key: "name" },
     { title: "Email", dataIndex: "email", key: "email" },
     { title: "Role", dataIndex: "role", key: "role" },
@@ -15,7 +15,7 @@ const Users = () => {
       columns={columns}
       dataSource={users}
       loading={loading}
-      rowKey={(record) => record._id}
+      rowKey={(record) => record.id}
     />
   );
 };

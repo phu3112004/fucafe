@@ -6,7 +6,7 @@ import Link from "next/link";
 const Products = () => {
   const { products, loading } = useProducts();
   const columns = [
-    { title: "ID", dataIndex: "_id", key: "_id" },
+    { title: "ID", dataIndex: "id", key: "id" },
     {
       title: "Image",
       dataIndex: "image",

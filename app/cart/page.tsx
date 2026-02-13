@@ -3,6 +3,7 @@
 import { useCartStore } from "@/store/useCartStore";
 import { Table, InputNumber, Button } from "antd";
 import { DeleteOutlined } from "@ant-design/icons";
+import Link from "next/link";
 import {
   Dialog,
   DialogContent,
@@ -120,7 +121,7 @@ const Cart = () => {
               </span>
             </div>
             <button className="w-full bg-[#6F4E37] text-white py-3 rounded hover:bg-[#5a3e2b] transition">
-              Thanh toán ngay
+              <Link href="/cart/checkout">Thanh toán ngay</Link>
             </button>
           </div>
         </div>

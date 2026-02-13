@@ -1,6 +1,7 @@
 import { CircleUser } from "lucide-react";
 import { useAuthStore } from "@/store/useAuthStore";
 import { useCartStore } from "@/store/useCartStore";
+import Link from "next/link";
 import {
   DropdownMenu,
   DropdownMenuContent,
@@ -20,13 +21,17 @@ const Auth = () => {
   return (
     <DropdownMenu>
       <DropdownMenuTrigger asChild>
-        <CircleUser />
+        <CircleUser className="cursor-pointer" />
       </DropdownMenuTrigger>
       <DropdownMenuContent>
         <DropdownMenuGroup>
           <DropdownMenuLabel>Tài khoản</DropdownMenuLabel>
-          <DropdownMenuItem>Hồ sơ</DropdownMenuItem>
-          <DropdownMenuItem>Đơn hàng</DropdownMenuItem>
+          <DropdownMenuItem>
+            <Link href="/profile">Hồ sơ</Link>
+          </DropdownMenuItem>
+          <DropdownMenuItem>
+            <Link href="/orders">Đơn hàng</Link>
+          </DropdownMenuItem>
         </DropdownMenuGroup>
         <DropdownMenuGroup>
           <DropdownMenuSeparator />
