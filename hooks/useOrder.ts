@@ -1,6 +1,5 @@
 import { useState } from "react";
 import { Order, CreateOrderPayload } from "@/types/order-types";
-import { useAuthStore } from "@/store/useAuthStore";
 import { toast } from "sonner";
 
 export const useOrder = () => {
@@ -13,8 +12,6 @@ export const useOrder = () => {
   // 3. State loading & error (để UI biết mà hiện thông báo)
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState<string | null>(null);
-
-  const { user } = useAuthStore(); // Lấy user từ store (nếu cần token)
 
   // --- HÀM 1: TẠO ĐƠN HÀNG MỚI (Dùng ở trang Checkout) ---
   const createOrder = async (payload: CreateOrderPayload) => {
@@ -62,13 +59,13 @@ export const useOrder = () => {
   };
 
   // --- HÀM 3: LẤY LỊCH SỬ ĐƠN HÀNG CỦA USER ---
-  const getMyOrders = async () => {
-    if (!user) return; // Chưa đăng nhập thì thôi
+  const getMyOrders = async (userId: string) => {
+    if (!userId) return; // Chưa đăng nhập thì thôi
 
     setLoading(true);
     try {
       // Giả sử API lấy danh sách là /api/order/user/[userId] hoặc /api/order/me
-      const res = await fetch(`/api/order/user/${user.id}`);
+      const res = await fetch(`/api/order/user/${userId}`);
       const data = await res.json();
 
       if (Array.isArray(data)) {

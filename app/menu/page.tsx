@@ -53,7 +53,7 @@ const Menu = () => {
           .map((group) => (
             <div key={group.category}>
               {/* Tiêu đề từng nhóm (Ví dụ: Cà phê) */}
-              <h2 className="text-2xl font-bold text-[#6F4E37] mb-4 border-b pb-2 uppercase">
+              <h2 className="text-2xl font-bold text-primary mb-4 border-b pb-2 uppercase">
                 {group.category}
               </h2>
 

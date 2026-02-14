@@ -2,23 +2,30 @@ import { NextResponse } from "next/server";
 import connectDB from "@/lib/mongodb";
 import Order from "@/lib/models/Order";
 
-export async function GET(
-  request: Request,
-  { params }: { params: { id: string } },
-) {
+// 1. Định nghĩa Props chuẩn Next.js 15
+type Props = {
+  params: Promise<{ id: string }>;
+};
+
+export async function GET(request: Request, props: Props) {
   try {
     await connectDB();
-    const order = await Order.findById(params.id);
+
+    const params = await props.params;
+    const orderId = params.id;
+
+    const order = await Order.findById(orderId);
 
     if (!order) {
-      return NextResponse.json({ message: "Order not found" }, { status: 404 });
+      return NextResponse.json(
+        { message: "Không tìm thấy đơn hàng" },
+        { status: 404 },
+      );
     }
+
     return NextResponse.json(order, { status: 200 });
   } catch (error) {
-    console.error("Error fetching order:", error);
-    return NextResponse.json(
-      { message: "Internal Server Error" },
-      { status: 500 },
-    );
+    console.error("Lỗi lấy chi tiết đơn hàng:", error);
+    return NextResponse.json({ message: "Lỗi Server" }, { status: 500 });
   }
 }

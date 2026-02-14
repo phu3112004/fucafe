@@ -61,7 +61,7 @@ const Cart = () => {
       title: "Tổng Giá",
       key: "total",
       render: (_: any, record: any) => (
-        <span className="font-bold text-[#6F4E37]">
+        <span className="font-bold text-primary">
           {(record.price * record.quantity).toLocaleString("vi-VN", {
             style: "currency",
             currency: "VND",
@@ -113,7 +113,7 @@ const Cart = () => {
           <div className="bg-gray-50 p-6 rounded-lg shadow-sm min-w-[300px]">
             <div className="flex justify-between mb-4 text-xl font-bold">
               <span>Tổng cộng:</span>
-              <span className="text-[#6F4E37]">
+              <span className="text-primary">
                 {useCartStore.getState().totalPrice.toLocaleString("vi-VN", {
                   style: "currency",
                   currency: "VND",

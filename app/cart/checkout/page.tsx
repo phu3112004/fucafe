@@ -15,11 +15,13 @@ import {
 import { useOrder } from "@/hooks/useOrder";
 import { toast } from "sonner";
 import { OrderItem } from "@/types/order-types";
+import { useRouter } from "next/navigation";
 
 const Checkout = () => {
   const { user } = useAuthStore();
   const { items, clearCart } = useCartStore();
   const { createOrder } = useOrder();
+  const router = useRouter();
 
   // 1. STATE QUẢN LÝ LỰA CHỌN
   const [deliveryMethod, setDeliveryMethod] = useState<"PICKUP" | "DELIVERY">(
@@ -114,14 +116,15 @@ const Checkout = () => {
 
     createOrder(orderData).then((newOrder) => {
       if (newOrder) {
-        clearCart(); // Xóa giỏ hàng sau khi tạo đơn hàng thành công
+        clearCart();
+        router.push(`/profile/orders/${newOrder._id}`);
       }
     });
   };
 
   return (
     <div className="px-4 md:px-16 py-8 bg-gray-50 min-h-screen">
-      <h1 className="text-3xl font-bold mb-6 text-[#6F4E37] text-center">
+      <h1 className="text-3xl font-bold mb-6 text-primary text-center">
         Xác nhận đơn hàng
       </h1>
 
@@ -267,7 +270,7 @@ const Checkout = () => {
             {/* TỔNG TIỀN VÀ NÚT ĐẶT */}
             <div className="flex justify-between items-center mb-4">
               <span className="text-lg font-bold">Tổng cộng:</span>
-              <span className="text-2xl font-bold text-[#6F4E37]">
+              <span className="text-2xl font-bold text-primary">
                 {totalAmount.toLocaleString("vi-VN", {
                   style: "currency",
                   currency: "VND",

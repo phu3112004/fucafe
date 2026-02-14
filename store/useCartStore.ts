@@ -14,7 +14,7 @@ export const useCartStore = create<CartState>()(
       addItem: (newItem: CartItem) => {
         set((state: any) => {
           const existingItem = state.items.find(
-            (i: any) => i.id === newItem.id,
+            (i: any) => i.id === newItem._id,
           );
 
           let updatedItems;
@@ -22,7 +22,7 @@ export const useCartStore = create<CartState>()(
           if (existingItem) {
             // Nếu có rồi: Dùng map để tạo mảng mới, update số lượng của item đó
             updatedItems = state.items.map((item: any) =>
-              item.id === newItem.id
+              item.id === newItem._id
                 ? { ...item, quantity: item.quantity + newItem.quantity }
                 : item,
             );

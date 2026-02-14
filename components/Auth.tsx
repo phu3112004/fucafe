@@ -30,7 +30,7 @@ const Auth = () => {
             <Link href="/profile">Hồ sơ</Link>
           </DropdownMenuItem>
           <DropdownMenuItem>
-            <Link href="/orders">Đơn hàng</Link>
+            <Link href="/profile/orders">Đơn hàng</Link>
           </DropdownMenuItem>
         </DropdownMenuGroup>
         <DropdownMenuGroup>

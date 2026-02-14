@@ -57,7 +57,7 @@ const NewProduct = () => {
 
   return (
     <div className="p-8 max-w-4xl mx-auto">
-      <h1 className="text-3xl font-bold text-[#6F4E37] mb-8">
+      <h1 className="text-3xl font-bold text-primary mb-8">
         Thêm sản phẩm mới
       </h1>
 

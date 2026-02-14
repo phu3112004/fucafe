@@ -50,7 +50,7 @@ export default function RegisterPage() {
       <div className="bg-white p-8 rounded-2xl shadow-xl w-full max-w-md border border-[#d4c5b0]">
         {/* Logo hoặc Tiêu đề */}
         <div className="text-center mb-8">
-          <h1 className="text-3xl font-bold text-[#6F4E37]">Fucafe</h1>
+          <h1 className="text-3xl font-bold text-primary">Fucafe</h1>
           <p className="text-gray-500 mt-2">Tạo tài khoản để nhận ưu đãi</p>
         </div>
 
@@ -113,7 +113,7 @@ export default function RegisterPage() {
           Bạn đã có tài khoản?{" "}
           <Link
             href="/login"
-            className="text-[#6F4E37] font-bold hover:underline"
+            className="text-primary font-bold hover:underline"
           >
             Đăng nhập
           </Link>

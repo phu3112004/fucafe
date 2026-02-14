@@ -49,7 +49,7 @@ export default function LoginPage() {
   return (
     <div className="min-h-screen flex items-center justify-center bg-[#f5f0e6] px-4">
       <div className="bg-white p-8 rounded-2xl shadow-xl w-full max-w-md border border-[#d4c5b0]">
-        <h1 className="text-3xl font-bold text-center text-[#6F4E37] mb-8">
+        <h1 className="text-3xl font-bold text-center text-primary mb-8">
           Đăng nhập Fucafe
         </h1>
 
@@ -85,7 +85,7 @@ export default function LoginPage() {
           Chưa có tài khoản?{" "}
           <Link
             href="/register"
-            className="text-[#6F4E37] font-bold hover:underline"
+            className="text-primary font-bold hover:underline"
           >
             Đăng ký ngay
           </Link>
