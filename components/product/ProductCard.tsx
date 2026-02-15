@@ -1,11 +1,16 @@
 import { Product } from "@/types/product-types";
 import { useCartStore } from "@/store/useCartStore";
 import { toast } from "sonner";
+import { useAuthStore } from "@/store/useAuthStore";
 
 const ProductCard = (product: Product) => {
   const addItem = useCartStore((state) => state.addItem);
-
+  const user = useAuthStore((state) => state.user);
   const handleAddToCart = () => {
+    if (!user) {
+      toast.error("Vui lòng đăng nhập để thêm sản phẩm vào giỏ hàng!");
+      return;
+    }
     toast.success("Đã thêm sản phẩm vào giỏ hàng!");
     addItem({ ...product, quantity: 1 });
   };

@@ -1,12 +1,12 @@
-const Contact = () => {
+const ContactPage = () => {
   return (
-    <div>
-      <h1>Contact Us</h1>
+    <div className="p-4">
+      <h1 className="text-2xl font-bold mb-4">Liên hệ với chúng tôi</h1>
       <p>
-        Welcome to our application! We are dedicated to providing the best
-        service possible.
+        Chào mừng bạn đến với ứng dụng của chúng tôi! Chúng tôi cam kết cung cấp
+        dịch vụ tốt nhất có thể.
       </p>
     </div>
   );
 };
-export default Contact;
+export default ContactPage;

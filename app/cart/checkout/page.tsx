@@ -17,7 +17,7 @@ import { toast } from "sonner";
 import { OrderItem } from "@/types/order-types";
 import { useRouter } from "next/navigation";
 
-const Checkout = () => {
+const CheckoutPage = () => {
   const { user } = useAuthStore();
   const { items, clearCart } = useCartStore();
   const { createOrder } = useOrder();
@@ -291,4 +291,4 @@ const Checkout = () => {
   );
 };
 
-export default Checkout;
+export default CheckoutPage;

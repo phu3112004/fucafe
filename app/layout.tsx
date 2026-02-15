@@ -19,7 +19,7 @@ export default function RootLayout({
     <html lang="en">
       <body>
         <Header />
-        <Toaster position="top-right" />
+        <Toaster position="top-right" duration={1000} />
         {children}
         <Footer />
       </body>

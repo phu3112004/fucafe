@@ -4,7 +4,9 @@ import Order from "@/lib/models/Order";
 
 export const GET = async () => {
   await connectDB();
-  const orders = await Order.find().sort({ createdAt: -1 });
+  const orders = await Order.find()
+    .populate("user", "name email") // Lấy tên và email của user
+    .sort({ createdAt: -1 });
   return NextResponse.json(orders);
 };
 export const POST = async (req: Request) => {

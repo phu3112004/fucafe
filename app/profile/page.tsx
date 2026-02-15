@@ -1,7 +1,7 @@
 "use client";
 import { useAuthStore } from "@/store/useAuthStore";
 
-const Profile = () => {
+const ProfilePage = () => {
   const { user } = useAuthStore();
   return (
     <div>
@@ -10,4 +10,4 @@ const Profile = () => {
   );
 };
 
-export default Profile;
+export default ProfilePage;

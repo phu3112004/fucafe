@@ -4,7 +4,7 @@ import ProductCard from "@/components/product/ProductCard";
 import { useProducts } from "@/hooks/useProducts";
 import { useState, useMemo } from "react";
 
-const Menu = () => {
+const MenuPage = () => {
   const { products } = useProducts(); // loading bỏ qua nếu chưa handle
   const [activeCategory, setActiveCategory] = useState("all");
 
@@ -77,4 +77,4 @@ const Menu = () => {
   );
 };
 
-export default Menu;
+export default MenuPage;

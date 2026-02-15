@@ -5,7 +5,7 @@ import { useEffect } from "react";
 import { status } from "@/const/order-const";
 import { useAuthStore } from "@/store/useAuthStore";
 
-const Orders = () => {
+const OrdersPage = () => {
   const { orders, getMyOrders, loading } = useOrder();
   const { user } = useAuthStore();
   useEffect(() => {
@@ -56,4 +56,4 @@ const Orders = () => {
   );
 };
 
-export default Orders;
+export default OrdersPage;

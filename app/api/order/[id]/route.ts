@@ -29,3 +29,31 @@ export async function GET(request: Request, props: Props) {
     return NextResponse.json({ message: "Lỗi Server" }, { status: 500 });
   }
 }
+
+export async function PATCH(request: Request, props: Props) {
+  try {
+    await connectDB();
+    const params = await props.params;
+    const orderId = params.id;
+    const { status } = await request.json();
+
+    const order = await Order.findById(orderId);
+
+    if (!order) {
+      return NextResponse.json(
+        { message: "Không tìm thấy đơn hàng" },
+        { status: 404 },
+      );
+    } else {
+      order.status = status;
+      await order.save();
+      return NextResponse.json(
+        { message: "Cập nhật trạng thái thành công" },
+        { status: 200 },
+      );
+    }
+  } catch (error) {
+    console.error("Lỗi cập nhật trạng thái đơn hàng:", error);
+    return NextResponse.json({ message: "Lỗi Server" }, { status: 500 });
+  }
+}

@@ -3,7 +3,7 @@ import { Table } from "antd";
 import { useProducts } from "@/hooks/useProducts";
 import Link from "next/link";
 
-const Products = () => {
+const AdminProductsPage = () => {
   const { products, loading } = useProducts();
   const columns = [
     { title: "ID", dataIndex: "id", key: "id" },
@@ -48,4 +48,4 @@ const Products = () => {
   );
 };
 
-export default Products;
+export default AdminProductsPage;

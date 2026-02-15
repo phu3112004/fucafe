@@ -15,7 +15,7 @@ import {
   DialogClose,
 } from "@/components/ui/dialog";
 
-const Cart = () => {
+const CartPage = () => {
   const { items, updateQuantity, removeItem } = useCartStore();
   const columns = [
     {
@@ -130,4 +130,4 @@ const Cart = () => {
   );
 };
 
-export default Cart;
+export default CartPage;

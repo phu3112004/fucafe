@@ -4,7 +4,7 @@ import { useProducts } from "@/hooks/useProducts";
 import { categories } from "@/const/product-const";
 import ImageUpload from "@/components/ImageUpload";
 
-const NewProduct = () => {
+const AdminNewProductPage = () => {
   // Lấy productForm và error ra để hiển thị
   const { addProduct, setProductForm, productForm, error, loading } =
     useProducts();
@@ -158,4 +158,4 @@ const NewProduct = () => {
     </div>
   );
 };
-export default NewProduct;
+export default AdminNewProductPage;
