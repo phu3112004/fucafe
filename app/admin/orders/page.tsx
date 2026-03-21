@@ -1,5 +1,5 @@
 "use client";
-import { Table, Tag, Select, message, Descriptions, Avatar, Card } from "antd";
+import { Table, Tag, Select, Descriptions, Avatar, Card } from "antd";
 import { useOrder } from "@/hooks/useOrder";
 import { useEffect, useState } from "react";
 import { status, PICKUP_FLOW, DELIVERY_FLOW } from "@/const/order-const";
@@ -38,6 +38,7 @@ const AdminOrdersPage = () => {
       toast.success("Cập nhật trạng thái thành công");
     } catch (error) {
       setOrders(oldOrders);
+      console.error("Update status failed:", error);
       toast.error("Lỗi cập nhật, đã hoàn tác!");
     } finally {
       setUpdatingId(null);
@@ -50,7 +51,7 @@ const AdminOrdersPage = () => {
       dataIndex: "_id",
       render: (id: string) => (
         <span className="font-mono text-gray-500">
-          #{id.slice(-6).toUpperCase()}
+          #{id.slice(-9).toUpperCase()}
         </span>
       ),
     },
@@ -102,42 +103,34 @@ const AdminOrdersPage = () => {
         const currentFlow =
           record.deliveryMethod === "PICKUP" ? PICKUP_FLOW : DELIVERY_FLOW;
         const currentIndex = currentFlow.indexOf(record.status);
+        const selectOptions = status
+          .filter((s) => currentFlow.includes(s.value))
+          .map((s) => {
+            const targetIndex = currentFlow.indexOf(s.value);
+            const isDisabled =
+              (targetIndex <= currentIndex && s.value !== "CANCELLED") ||
+              record.status === "CANCELLED" ||
+              record.status === "COMPLETED";
 
+            return {
+              value: s.value,
+              label: (
+                <Tag color={isDisabled ? "default" : s.color}>{s.label}</Tag>
+              ),
+              disabled: isDisabled,
+            };
+          });
         return (
           <Select
             value={record.status}
+            options={selectOptions}
             style={{ width: "100%" }}
             loading={updatingId === record._id}
             onChange={(val) => handleStatusChange(record._id, val)}
             disabled={
               record.status === "COMPLETED" || record.status === "CANCELLED"
             }
-          >
-            {status.map((s) => {
-              if (!currentFlow.includes(s.value)) return null;
-
-              const targetIndex = currentFlow.indexOf(s.value);
-
-              // Logic chặn ngược:
-              // 1. Disable các bước cũ hơn (targetIndex < currentIndex)
-              // 2. Disable chính bước hiện tại
-              // 3. Luôn cho phép chọn "CANCELLED" (trừ khi đã xong)
-              const isDisabled =
-                (targetIndex <= currentIndex && s.value !== "CANCELLED") ||
-                record.status === "CANCELLED" ||
-                record.status === "COMPLETED";
-
-              return (
-                <Select.Option
-                  key={s.value}
-                  value={s.value}
-                  disabled={isDisabled}
-                >
-                  <Tag color={isDisabled ? "default" : s.color}>{s.label}</Tag>
-                </Select.Option>
-              );
-            })}
-          </Select>
+          />
         );
       },
     },
@@ -151,7 +144,7 @@ const AdminOrdersPage = () => {
           <Card title="Danh sách món" size="small" variant="borderless">
             {record.items.map((item: any, idx: number) => (
               <div
-                key={idx}
+                key={item._id || item.productId}
                 className="flex items-center gap-3 mb-3 last:mb-0 border-b pb-2 last:border-0"
               >
                 <img

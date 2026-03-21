@@ -16,7 +16,7 @@ const AdminUsersPage = () => {
         Quản lý người dùng
       </h1>
       <Table
-        rowKey={(record) => record.id}
+        rowKey={"_id"}
         columns={columns}
         dataSource={users}
         loading={loading}

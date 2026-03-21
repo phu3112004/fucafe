@@ -158,30 +158,10 @@ const OrderDetailPage = () => {
             className="shadow-sm"
           >
             <Table
+              rowKey={"_id"}
               dataSource={order.items}
               columns={columns}
               pagination={false}
-              rowKey={(record) => record.productId}
-              summary={() => (
-                <Table.Summary.Row>
-                  <Table.Summary.Cell
-                    index={0}
-                    colSpan={3}
-                    className="text-right font-bold"
-                  >
-                    Tổng cộng:
-                  </Table.Summary.Cell>
-                  <Table.Summary.Cell
-                    index={1}
-                    className="font-bold text-xl text-primary"
-                  >
-                    {new Intl.NumberFormat("vi-VN", {
-                      style: "currency",
-                      currency: "VND",
-                    }).format(order.totalAmount)}
-                  </Table.Summary.Cell>
-                </Table.Summary.Row>
-              )}
             />
           </Card>
         </div>

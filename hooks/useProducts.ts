@@ -37,6 +37,44 @@ const useProducts = () => {
     fetchProducts();
   }, []);
 
+  // 1. Thêm hàm Reset Form để dùng khi chuyển từ Sửa sang Thêm
+  const resetForm = () => {
+    setProductForm({
+      name: "",
+      description: "",
+      price: 0,
+      image: "",
+      category: "",
+      isBestSeller: false,
+    });
+    setError(null);
+  };
+
+  // 2. Thêm hàm Update Product
+  const updateProduct = async (id: string, data: Partial<ProductType>) => {
+    setLoading(true);
+    setError(null);
+    try {
+      const response = await fetch(`/api/products/${id}`, {
+        method: "PUT", // Hoặc PATCH tùy API của bạn
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(data),
+      });
+
+      if (!response.ok) throw new Error("Failed to update product");
+
+      const updatedData = await response.json();
+      // Cập nhật lại danh sách local để UI thay đổi ngay
+      setProducts((prev) => prev.map((p) => (p._id === id ? updatedData : p)));
+      return true; // Trả về true để component biết là đã xong
+    } catch (err) {
+      setError((err as Error).message);
+      return false;
+    } finally {
+      setLoading(false);
+    }
+  };
+
   // --- HÀM MỚI: Để cập nhật từng trường của form ---
   const updateForm = (key: keyof Omit<ProductType, "_id">, value: any) => {
     setProductForm((prev) => ({
@@ -79,9 +117,7 @@ const useProducts = () => {
 
       const addedProduct: ProductType = await response.json();
       setProducts((prev) => [...prev, addedProduct]);
-      alert("Thêm sản phẩm thành công!"); // Thông báo cho người dùng
 
-      // Reset form sau khi thêm thành công (tuỳ chọn)
       setProductForm({
         name: "",
         description: "",
@@ -104,8 +140,11 @@ const useProducts = () => {
     loading,
     error,
     addProduct,
+    fetchProducts,
     productForm,
     setProductForm: updateForm, // Xuất hàm updateForm thay vì setProductForm gốc
+    updateProduct, // Xuất hàm mới
+    resetForm,
   };
 };
 
