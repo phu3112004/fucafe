@@ -220,7 +220,7 @@ const AdminOrdersPage = () => {
 
   return (
     <div className="p-4 md:p-8 max-w-7xl mx-auto">
-      <h1 className="text-2xl font-bold text-gray-800 mb-6">
+      <h1 className="text-3xl font-bold text-primary mb-8">
         Quản lý & Xử lý đơn hàng
       </h1>
       <Table

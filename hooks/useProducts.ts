@@ -135,6 +135,26 @@ const useProducts = () => {
     }
   };
 
+  // 3. Thêm hàm Delete Product
+  const deleteProduct = async (id: string) => {
+    setLoading(true);
+    setError(null);
+    try {
+      const response = await fetch(`/api/products/${id}`, {
+        method: "DELETE",
+      });
+      if (!response.ok) throw new Error("Failed to delete product");
+
+      // Cập nhật lại danh sách local để UI thay đổi ngay
+      setProducts((prev) => prev.filter((p) => p._id !== id));
+    } catch (err) {
+      setError((err as Error).message);
+    } finally {
+      setLoading(false);
+      router.refresh();
+    }
+  };
+
   return {
     products,
     loading,
@@ -145,6 +165,7 @@ const useProducts = () => {
     setProductForm: updateForm, // Xuất hàm updateForm thay vì setProductForm gốc
     updateProduct, // Xuất hàm mới
     resetForm,
+    deleteProduct, // Xuất hàm deleteProduct
   };
 };
 

@@ -9,11 +9,22 @@ import {
   DialogTitle,
   DialogDescription,
 } from "@/components/ui/dialog";
+import {
+  AlertDialog,
+  AlertDialogTrigger,
+  AlertDialogContent,
+  AlertDialogHeader,
+  AlertDialogTitle,
+  AlertDialogDescription,
+  AlertDialogFooter,
+  AlertDialogCancel,
+  AlertDialogAction,
+} from "@/components/ui/alert-dialog";
 import AdminProductModal from "@/components/product/admin/AdminProductModal";
 import { useState } from "react";
 
 const AdminProductsPage = () => {
-  const { products, loading, fetchProducts } = useProducts();
+  const { products, loading, fetchProducts, deleteProduct } = useProducts();
   const [isAddOpen, setIsAddOpen] = useState(false);
   const [editingId, setEditingId] = useState<string | null>(null);
 
@@ -81,15 +92,36 @@ const AdminProductsPage = () => {
               />
             </DialogContent>
           </Dialog>
-          <Button type="primary" danger>
-            Xóa
-          </Button>
+          <AlertDialog>
+            <AlertDialogTrigger asChild>
+              <Button type="primary" danger>
+                Xóa
+              </Button>
+            </AlertDialogTrigger>
+            <AlertDialogContent>
+              <AlertDialogHeader>
+                <AlertDialogTitle>Xác nhận xóa</AlertDialogTitle>
+                <AlertDialogDescription>
+                  Bạn có chắc chắn muốn xóa sản phẩm này? Hành động này không
+                  thể hoàn tác và sẽ ảnh hưởng đến trang chủ, danh mục và đơn
+                  hàng liên quan.
+                </AlertDialogDescription>
+              </AlertDialogHeader>
+              <AlertDialogFooter>
+                <AlertDialogCancel>Hủy</AlertDialogCancel>
+                <AlertDialogAction onClick={() => deleteProduct(record._id)}>
+                  Xóa
+                </AlertDialogAction>
+              </AlertDialogFooter>
+            </AlertDialogContent>
+          </AlertDialog>
         </div>
       ),
     },
   ];
   return (
-    <>
+    <div className="p-4 md:p-8 max-w-7xl mx-auto">
+      <h1 className="text-3xl font-bold text-primary mb-8">Quản lý sản phẩm</h1>
       <Dialog open={isAddOpen} onOpenChange={setIsAddOpen}>
         <DialogTrigger asChild>
           <Button type="primary" className="mb-4 float-right">
@@ -118,7 +150,7 @@ const AdminProductsPage = () => {
         loading={loading}
         rowKey={"_id"}
       />
-    </>
+    </div>
   );
 };
 

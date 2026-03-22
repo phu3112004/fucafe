@@ -9,10 +9,11 @@ export default function AdminSidebar() {
   const menuItems = [
     { name: "Tổng quan", href: "/admin" },
     { name: "Quản lý Đồ uống", href: "/admin/products" },
-    { name: "Thêm món mới", href: "/admin/products/new" },
     { name: "Quản lý Banner", href: "/admin/banners" },
-    { name: "Đơn hàng", href: "/admin/orders" },
-    { name: "Khách hàng", href: "/admin/users" },
+    { name: "Quản lý Đơn hàng", href: "/admin/orders" },
+    { name: "Quản lý Khách hàng", href: "/admin/users" },
+    { name: "Quản lý Liên hệ", href: "/admin/contact" },
+    { name: "Quản lý Tin tức", href: "/admin/news" },
   ];
 
   return (
