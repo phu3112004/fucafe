@@ -15,7 +15,7 @@ const NewsCard = ({ item }: { item: News }) => {
         cover={
           <img
             alt={item.title}
-            src={item.thumbnail}
+            src={item.thumbnail || "/news_default.jpg"}
             style={{ display: "block" }}
           />
         }

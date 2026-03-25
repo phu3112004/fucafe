@@ -62,7 +62,7 @@ const NewsDetailPage = ({ params }: { params: Promise<{ id: string }> }) => {
 
         <div style={{ textAlign: "center", marginBottom: "32px" }}>
           <Image
-            src={post.thumbnail}
+            src={post.thumbnail || "/news_default.jpg"}
             alt={post.title}
             style={{
               borderRadius: "12px",

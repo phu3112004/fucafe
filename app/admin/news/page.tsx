@@ -36,6 +36,10 @@ export default function AdminNewsPage() {
     toast.success("Xóa bài viết thành công!");
   };
   const handleSave = async (title: string, thumbnail: string, content: any) => {
+    if (!title || !content) {
+      toast.error("Tiêu đề và nội dung không được để trống!");
+      return;
+    }
     if (editingId) {
       const data = await updatePost(title, thumbnail, content, editingId);
       if (data) {
