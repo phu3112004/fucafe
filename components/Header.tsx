@@ -19,7 +19,13 @@ const Header = () => {
     <header className="w-[100%] h-[60px] flex flex-center px-16 border-b border-gray-300 sticky top-0 bg-white z-50">
       <nav className="w-[100%] h-[100%] flex justify-between items-center">
         <div>
-          <Image src="/logo.jpg" alt="Logo" width={50} height={50} />
+          <Image
+            src="/logo.jpg"
+            loading="eager"
+            alt="Logo"
+            width={50}
+            height={50}
+          />
         </div>
         <ul className="flex gap-16 text-lg">
           {navItem.map((item) => (

@@ -1,9 +1,10 @@
 "use client";
 
 import { useEffect, useState } from "react";
+import { News } from "@/types/news-types";
 
 export const useNews = () => {
-  const [posts, setPosts] = useState([]);
+  const [posts, setPosts] = useState<News[]>([]);
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState<string | null>(null);
   const [success, setSuccess] = useState(false);
@@ -117,6 +118,10 @@ export const useNews = () => {
     }
   };
 
+  const getPostById = (id: string) => {
+    return posts.find((post) => post._id === id);
+  };
+
   return {
     posts,
     setPosts,
@@ -127,5 +132,6 @@ export const useNews = () => {
     loading,
     error,
     success,
+    getPostById,
   };
 };

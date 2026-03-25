@@ -1,7 +1,6 @@
-import { useState } from "react";
+import { useState, useEffect, use } from "react";
 import { Order, CreateOrderPayload } from "@/types/order-types";
 import { toast } from "sonner";
-import { set } from "mongoose";
 
 export const useOrder = () => {
   // 1. State lưu đơn hàng đơn lẻ (dùng cho trang chi tiết hoặc trang cảm ơn)
@@ -14,6 +13,9 @@ export const useOrder = () => {
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState<string | null>(null);
 
+  useEffect(() => {
+    getAllOrders();
+  }, []);
   // --- HÀM 1: TẠO ĐƠN HÀNG MỚI (Dùng ở trang Checkout) ---
   const createOrder = async (payload: CreateOrderPayload) => {
     setLoading(true);

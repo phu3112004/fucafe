@@ -11,7 +11,13 @@ const Footer = () => {
     <footer>
       <div className="w-[100%] min-h-[200px] flex justify-between items-center p-16 border-t border-gray-300">
         <div className="w-[30%] flex flex-col items-start gap-2">
-          <Image src="/logo.jpg" alt="Logo" width={120} height={120} />
+          <Image
+            src="/logo.jpg"
+            loading="eager"
+            alt="Logo"
+            width={120}
+            height={120}
+          />
           <p>© 2026 Fu Café. Tất cả các quyền được bảo lưu</p>
         </div>
         <div className="w-[65%] flex justify-between">
