@@ -68,13 +68,13 @@ const AdminProductModal = ({ product, onSuccess }: AdminProductModalProps) => {
       // Gọi API Update (Bạn cần định nghĩa hàm này trong hook useProducts)
       success = await updateProduct(product._id, productForm);
       if (success) {
-        toast.success("Cập nhật sản phẩm thành công!");
+        toast.success("Product updated successfully!");
       }
     } else {
       // Gọi API Add
       await addProduct(e);
       success = !error; // Giả định thành công nếu không có lỗi
-      toast.success("Thêm sản phẩm thành công!");
+      toast.success("Product added successfully!");
     }
 
     if (success && onSuccess) {
@@ -92,10 +92,9 @@ const AdminProductModal = ({ product, onSuccess }: AdminProductModalProps) => {
       )}
 
       <form onSubmit={handleSubmit} className="grid grid-cols-1 gap-5">
-        {/* Tên sản phẩm */}
         <div className="flex flex-col">
           <label className="mb-1.5 font-semibold text-gray-700">
-            Tên sản phẩm
+            Product Name
           </label>
           <input
             type="text"
@@ -110,7 +109,7 @@ const AdminProductModal = ({ product, onSuccess }: AdminProductModalProps) => {
         {/* Giá sản phẩm */}
         <div className="flex flex-col">
           <label className="mb-1.5 font-semibold text-gray-700">
-            Giá (VNĐ)
+            Price (VNĐ)
           </label>
           <input
             type="number"
@@ -124,14 +123,14 @@ const AdminProductModal = ({ product, onSuccess }: AdminProductModalProps) => {
 
         {/* Danh mục */}
         <div className="flex flex-col">
-          <label className="mb-1.5 font-semibold text-gray-700">Danh mục</label>
+          <label className="mb-1.5 font-semibold text-gray-700">Category</label>
           <select
             name="category"
             className="border border-gray-300 p-2.5 rounded-md focus:ring-2 focus:ring-[#6F4E37] outline-none"
             value={productForm.category}
             onChange={handleInputChange}
           >
-            <option value="">-- Chọn danh mục --</option>
+            <option value="">-- Select Category --</option>
             {categories.map((cat) => (
               <option key={cat} value={cat}>
                 {cat}
@@ -142,11 +141,13 @@ const AdminProductModal = ({ product, onSuccess }: AdminProductModalProps) => {
 
         {/* Mô tả */}
         <div className="flex flex-col">
-          <label className="mb-1.5 font-semibold text-gray-700">Mô tả</label>
+          <label className="mb-1.5 font-semibold text-gray-700">
+            Description
+          </label>
           <textarea
             name="description"
             rows={3}
-            placeholder="Mô tả hương vị, thành phần..."
+            placeholder="Description of flavor, ingredients..."
             className="border border-gray-300 p-2.5 rounded-md focus:ring-2 focus:ring-[#6F4E37] outline-none resize-none"
             value={productForm.description}
             onChange={handleInputChange}
@@ -167,15 +168,13 @@ const AdminProductModal = ({ product, onSuccess }: AdminProductModalProps) => {
             htmlFor="isBestSeller"
             className="font-medium cursor-pointer select-none"
           >
-            Đánh dấu là sản phẩm bán chạy (Best Seller)
+            Mark as Best Seller
           </label>
         </div>
 
         {/* Upload hình ảnh */}
         <div className="flex flex-col gap-2">
-          <label className="font-semibold text-gray-700">
-            Hình ảnh sản phẩm
-          </label>
+          <label className="font-semibold text-gray-700">Product Image</label>
           {productForm.image && (
             <div className="relative w-24 h-24 border rounded-md overflow-hidden bg-gray-50">
               <img
@@ -206,12 +205,12 @@ const AdminProductModal = ({ product, onSuccess }: AdminProductModalProps) => {
           {loading ? (
             <span className="flex items-center justify-center gap-2">
               <div className="w-5 h-5 border-2 border-white border-t-transparent rounded-full animate-spin"></div>
-              Đang xử lý...
+              Processing...
             </span>
           ) : isEdit ? (
-            "Cập nhật sản phẩm"
+            "Update Product"
           ) : (
-            "Thêm sản phẩm ngay"
+            "Add Product Now"
           )}
         </button>
       </form>

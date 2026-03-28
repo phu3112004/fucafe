@@ -45,7 +45,6 @@ const MenuPage = () => {
         setActiveCategory={setActiveCategory}
       />
 
-      {/* Cột hiển thị sản phẩm */}
       <div className="pl-4 flex flex-col gap-10">
         {groupedProducts
           .slice()
@@ -68,9 +67,7 @@ const MenuPage = () => {
 
         {/* Xử lý trường hợp không có sản phẩm nào */}
         {groupedProducts.length === 0 && (
-          <div className="text-center text-gray-500">
-            Không tìm thấy sản phẩm nào.
-          </div>
+          <div className="text-center text-gray-500">No products found.</div>
         )}
       </div>
     </div>

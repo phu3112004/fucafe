@@ -18,30 +18,30 @@ const Footer = () => {
             width={120}
             height={120}
           />
-          <p>© 2026 Fu Café. Tất cả các quyền được bảo lưu</p>
+          <p>© 2026 Fu Café. All rights reserved</p>
         </div>
         <div className="w-[65%] flex justify-between">
           <div>
-            <h2 className="text-xl font-medium">Về chúng tôi</h2>
+            <h2 className="text-xl font-medium">About Us</h2>
             <ul className="flex gap-2 mt-4 flex-col">
               <li>
-                <Link href={"/about"}>Câu chuyện</Link>
+                <Link href={"/about"}>Our Story</Link>
               </li>
               <li>
-                <Link href={"/menu"}>Thực đơn</Link>
+                <Link href={"/menu"}>Menu</Link>
               </li>
             </ul>
           </div>
           <div>
-            <h2 className="text-xl font-medium">Liên hệ</h2>
+            <h2 className="text-xl font-medium">Contact</h2>
             <ul className="flex gap-2 mt-4 flex-col">
-              <li>Điện thoại: +84 912 345 678</li>
+              <li>Phone: +84 912 345 678</li>
               <li>Email: info@fucafe.com</li>
-              <li>Địa chỉ: 123 Coffee, TP.HCM</li>
+              <li>Address: 123 Coffee, HCMC</li>
             </ul>
           </div>
           <div>
-            <h2 className="text-xl font-medium">Theo dõi</h2>
+            <h2 className="text-xl font-medium">Follow Us</h2>
             <ul className="flex gap-2 mt-4 flex-col">
               <li>Facebook</li>
               <li>Twitter</li>
@@ -49,11 +49,11 @@ const Footer = () => {
             </ul>
           </div>
           <div>
-            <h2 className="text-xl font-medium">Thông tin</h2>
+            <h2 className="text-xl font-medium">Information</h2>
             <ul className="flex gap-2 mt-4 flex-col">
               <li>Blog</li>
-              <li>Chính sách bảo mật</li>
-              <li>Nhận tin qua email</li>
+              <li>Privacy Policy</li>
+              <li>Subscribe to Newsletter</li>
             </ul>
           </div>
         </div>

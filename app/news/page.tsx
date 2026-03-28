@@ -19,7 +19,7 @@ const NewsPage = () => {
 
   return (
     <div className="py-8 px-16 max-w-7xl mx-auto min-h-screen bg-gray-50 rounded-lg">
-      <h1 className="text-3xl font-bold mb-6">Tin tức mới nhất</h1>
+      <h1 className="text-3xl font-bold mb-6">Latest News</h1>
 
       <Masonry
         columns={{ xs: 1, sm: 2, md: 3, lg: 4 }}

@@ -18,7 +18,7 @@ const useContacts = () => {
       const data = await res.json();
       setContacts(data);
     } catch (error) {
-      console.error("Lỗi tải Contact", error);
+      console.error("Error fetching contacts:", error);
     }
   };
 
@@ -36,7 +36,7 @@ const useContacts = () => {
       !formData.message ||
       !formData.phone
     )
-      return alert("Vui lòng điền đầy đủ thông tin!");
+      return alert("Please fill in all required fields!");
 
     setLoading(true);
     try {
@@ -49,7 +49,7 @@ const useContacts = () => {
       setFormData({ name: "", phone: "", email: "", message: "" });
       fetchContacts();
     } catch (error) {
-      console.error("Lỗi gửi liên hệ", error);
+      console.error("Error submitting contact form:", error);
     } finally {
       setLoading(false);
     }

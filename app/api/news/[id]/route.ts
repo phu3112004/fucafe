@@ -11,9 +11,12 @@ export async function DELETE(
     const { id } = await params;
     await connectDB();
     await News.findByIdAndDelete(id);
-    return NextResponse.json({ message: "Đã xóa banner" });
+    return NextResponse.json({ message: "News deleted successfully" });
   } catch (error) {
-    return NextResponse.json({ message: "Lỗi xóa" }, { status: 500 });
+    return NextResponse.json(
+      { message: "Error deleting news" },
+      { status: 500 },
+    );
   }
 }
 
@@ -28,6 +31,9 @@ export async function PUT(
     const updatedNews = await News.findByIdAndUpdate(id, body, { new: true });
     return NextResponse.json({ data: updatedNews });
   } catch (error) {
-    return NextResponse.json({ message: "Lỗi cập nhật" }, { status: 500 });
+    return NextResponse.json(
+      { message: "Error updating news" },
+      { status: 500 },
+    );
   }
 }

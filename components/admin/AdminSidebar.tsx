@@ -7,13 +7,13 @@ export default function AdminSidebar() {
   const pathname = usePathname();
 
   const menuItems = [
-    { name: "Tổng quan", href: "/admin" },
-    { name: "Quản lý Đồ uống", href: "/admin/products" },
-    { name: "Quản lý Banner", href: "/admin/banners" },
-    { name: "Quản lý Đơn hàng", href: "/admin/orders" },
-    { name: "Quản lý Khách hàng", href: "/admin/users" },
-    { name: "Quản lý Liên hệ", href: "/admin/contact" },
-    { name: "Quản lý Tin tức", href: "/admin/news" },
+    { name: "Dashboard", href: "/admin" },
+    { name: "Products Management", href: "/admin/products" },
+    { name: "Banners Management", href: "/admin/banners" },
+    { name: "Orders Management", href: "/admin/orders" },
+    { name: "Users Management", href: "/admin/users" },
+    { name: "Contacts Management", href: "/admin/contact" },
+    { name: "News Management", href: "/admin/news" },
   ];
 
   return (
@@ -21,7 +21,7 @@ export default function AdminSidebar() {
       {/* Logo Admin */}
       <div className="p-6 border-b border-gray-700">
         <h2 className="text-2xl font-bold text-[#D4A373]">Fucafe Admin</h2>
-        <p className="text-xs text-gray-400 mt-1">Hệ thống quản lý</p>
+        <p className="text-xs text-gray-400 mt-1">Management System</p>
       </div>
 
       {/* Menu Links */}
@@ -50,7 +50,7 @@ export default function AdminSidebar() {
           href="/"
           className="block text-center text-sm text-gray-400 hover:text-white"
         >
-          ← Quay về Website
+          ← Back to Website
         </Link>
       </div>
     </aside>

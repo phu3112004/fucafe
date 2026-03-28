@@ -1,11 +1,11 @@
 const status = [
-  { value: "PENDING", label: "Chờ xác nhận", color: "orange" },
-  { value: "PREPARING", label: "Đang chuẩn bị", color: "blue" },
-  { value: "READY_FOR_PICKUP", label: "Chờ đến lấy hàng", color: "cyan" },
-  { value: "SHIPPED", label: "Đang giao hàng", color: "geekblue" },
-  { value: "DELIVERED", label: "Đã giao hàng", color: "green" },
-  { value: "ENDED", label: "Đã hoàn thành", color: "default" },
-  { value: "CANCELLED", label: "Đã hủy", color: "red" },
+  { value: "PENDING", label: "Pending", color: "orange" },
+  { value: "PREPARING", label: "Preparing", color: "blue" },
+  { value: "READY_FOR_PICKUP", label: "Ready for Pickup", color: "cyan" },
+  { value: "SHIPPED", label: "Shipped", color: "geekblue" },
+  { value: "DELIVERED", label: "Delivered", color: "green" },
+  { value: "ENDED", label: "Ended", color: "default" },
+  { value: "CANCELLED", label: "Cancelled", color: "red" },
 ];
 const PICKUP_FLOW = [
   "PENDING",

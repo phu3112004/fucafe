@@ -19,8 +19,8 @@ const NewsDetailPage = ({ params }: { params: Promise<{ id: string }> }) => {
   if (!post) {
     return (
       <div style={{ padding: "50px", textAlign: "center" }}>
-        <Title level={3}>Không tìm thấy bài viết</Title>
-        <Link href="/news">Quay lại trang tin tức</Link>
+        <Title level={3}>Post not found</Title>
+        <Link href="/news">Back to News Page</Link>
       </div>
     );
   }
@@ -30,9 +30,9 @@ const NewsDetailPage = ({ params }: { params: Promise<{ id: string }> }) => {
       <Breadcrumb
         style={{ marginBottom: "20px" }}
         items={[
-          { title: <Link href="/">Trang chủ</Link> },
-          { title: <Link href="/news">Tin tức</Link> },
-          { title: "Chi tiết bài viết" },
+          { title: <Link href="/">Home</Link> },
+          { title: <Link href="/news">News</Link> },
+          { title: "Post Details" },
         ]}
       />
 
@@ -55,7 +55,7 @@ const NewsDetailPage = ({ params }: { params: Promise<{ id: string }> }) => {
           <span>
             <UserOutlined /> Admin
           </span>
-          <Tag color="blue">Tin mới nhất</Tag>
+          <Tag color="blue">Latest News</Tag>
         </div>
 
         <Divider />
@@ -103,7 +103,7 @@ const NewsDetailPage = ({ params }: { params: Promise<{ id: string }> }) => {
         <div style={{ textAlign: "center", paddingBottom: "40px" }}>
           <Link href="/news">
             <Text type="secondary" style={{ cursor: "pointer" }}>
-              <ArrowLeftOutlined /> Quay lại danh sách tin tức
+              <ArrowLeftOutlined /> Back to News List
             </Text>
           </Link>
         </div>

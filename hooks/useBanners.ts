@@ -18,7 +18,7 @@ const useBanners = () => {
       const data = await res.json();
       setBanners(data);
     } catch (error) {
-      console.error("Lỗi tải banner", error);
+      console.error("Error fetching banners:", error);
     }
   };
 
@@ -30,7 +30,7 @@ const useBanners = () => {
   // 2. Hàm thêm mới
   const addBanner = async (e: React.FormEvent) => {
     e.preventDefault();
-    if (!formData.imageUrl) return alert("Phải có link ảnh!");
+    if (!formData.imageUrl) return alert("Must have an image link!");
 
     setLoading(true);
     try {
@@ -43,7 +43,7 @@ const useBanners = () => {
       setFormData({ title: "", imageUrl: "", linkTo: "/" });
       fetchBanners();
     } catch (error) {
-      alert("Lỗi thêm banner");
+      alert("Error adding banner");
     } finally {
       setLoading(false);
     }
@@ -51,12 +51,12 @@ const useBanners = () => {
 
   // 3. Hàm xóa
   const deleteBanner = async (id: string) => {
-    if (!confirm("Bạn chắc chắn muốn xóa banner này?")) return;
+    if (!confirm("Are you sure you want to delete this banner?")) return;
     try {
       await fetch(`/api/carousel/${id}`, { method: "DELETE" });
       fetchBanners();
     } catch (error) {
-      alert("Lỗi xóa banner");
+      alert("Error deleting banner");
     }
   };
 

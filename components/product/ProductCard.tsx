@@ -8,10 +8,10 @@ const ProductCard = (product: Product) => {
   const user = useAuthStore((state) => state.user);
   const handleAddToCart = () => {
     if (!user) {
-      toast.error("Vui lòng đăng nhập để thêm sản phẩm vào giỏ hàng!");
+      toast.error("Please log in to add items to your cart!");
       return;
     }
-    toast.success("Đã thêm sản phẩm vào giỏ hàng!");
+    toast.success("Item added to cart!");
     addItem({ ...product, quantity: 1 });
   };
 
@@ -29,7 +29,7 @@ const ProductCard = (product: Product) => {
       )}
       <h2 className="text-xl font-semibold">{product.name}</h2>
       <p>
-        Giá:{" "}
+        Price:{" "}
         {product.price.toLocaleString("vi-VN", {
           style: "currency",
           currency: "VND",
@@ -39,7 +39,7 @@ const ProductCard = (product: Product) => {
         onClick={handleAddToCart}
         className="bg-[#6F4E37] text-white px-4 py-2 rounded hover:bg-[#5a3e2d] cursor-pointer transition-colors duration-300"
       >
-        Thêm vào giỏ hàng
+        Add to Cart
       </button>
     </div>
   );

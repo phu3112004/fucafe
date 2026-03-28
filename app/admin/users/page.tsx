@@ -13,7 +13,7 @@ const AdminUsersPage = () => {
   return (
     <div className="p-8 max-w-4xl mx-auto">
       <h1 className="text-3xl font-bold text-primary mb-8">
-        Quản lý người dùng
+        User Management
       </h1>
       <Table
         rowKey={"_id"}

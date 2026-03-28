@@ -16,7 +16,7 @@ export const useNews = () => {
       const response = await fetch("/api/news");
       const result = await response.json();
       if (!response.ok) {
-        throw new Error(result.error || "Có lỗi xảy ra khi tải bài viết");
+        throw new Error(result.error || "Some errors occur");
       }
       setPosts(result.data);
     } catch (err: any) {
@@ -32,7 +32,7 @@ export const useNews = () => {
 
   const createPost = async (title: string, thumbnail: string, content: any) => {
     if (!title.trim()) {
-      setError("Tiêu đề không được để trống");
+      setError("Title cannot be empty");
       return;
     }
 
@@ -52,7 +52,7 @@ export const useNews = () => {
       const result = await response.json();
 
       if (!response.ok) {
-        throw new Error(result.error || "Có lỗi xảy ra khi đăng bài");
+        throw new Error(result.error || "Some errors occur when creating post");
       }
 
       setSuccess(true);
@@ -73,7 +73,7 @@ export const useNews = () => {
       });
       const result = await response.json();
       if (!response.ok) {
-        throw new Error(result.error || "Có lỗi xảy ra khi xóa bài viết");
+        throw new Error(result.error || "Some errors occur when deleting post");
       }
       fetchPosts();
     } catch (err: any) {
@@ -90,7 +90,7 @@ export const useNews = () => {
     id: string,
   ) => {
     if (!title.trim()) {
-      setError("Tiêu đề không được để trống");
+      setError("Title cannot be empty");
       return;
     }
     setLoading(true);
@@ -107,7 +107,7 @@ export const useNews = () => {
 
       const result = await response.json();
       if (!response.ok) {
-        throw new Error(result.error || "Có lỗi xảy ra khi cập nhật bài viết");
+        throw new Error(result.error || "Some errors occur when updating post");
       }
       setSuccess(true);
       return result.data;

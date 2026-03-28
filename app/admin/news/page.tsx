@@ -33,11 +33,11 @@ export default function AdminNewsPage() {
 
   const handleDelete = async (id: string) => {
     deletePost(id);
-    toast.success("Xóa bài viết thành công!");
+    toast.success("Delete post successfully!");
   };
   const handleSave = async (title: string, thumbnail: string, content: any) => {
     if (!title || !content) {
-      toast.error("Tiêu đề và nội dung không được để trống!");
+      toast.error("Title and content cannot be empty!");
       return;
     }
     if (editingId) {
@@ -45,25 +45,25 @@ export default function AdminNewsPage() {
       if (data) {
         setEditingId(null);
         fetchPosts();
-        toast.success("Cập nhật thành công!");
+        toast.success("Update post successfully!");
       }
     } else {
       const data = await createPost(title, thumbnail, content);
       if (data) {
         setIsDialogOpen(false);
         fetchPosts();
-        toast.success("Đăng bài thành công cho Fucafe!");
+        toast.success("Create post successfully!");
       }
     }
   };
   const columns = [
     {
-      title: "Tiêu đề",
+      title: "Title",
       dataIndex: "title",
       key: "title",
     },
     {
-      title: "Ảnh đại diện",
+      title: "Thumbnail",
       dataIndex: "thumbnail",
       key: "thumbnail",
       render: (url?: string) =>
@@ -82,13 +82,13 @@ export default function AdminNewsPage() {
         ),
     },
     {
-      title: "Ngày tạo",
+      title: "Created Date",
       dataIndex: "createdAt",
       key: "createdAt",
-      render: (text: string) => new Date(text).toLocaleDateString(),
+      render: (text: string) => new Date(text).toLocaleDateString("en-US"),
     },
     {
-      title: "Hành động",
+      title: "Actions",
       key: "action",
       render: (_: any, record: any) => (
         <div className="flex gap-2">
@@ -98,15 +98,16 @@ export default function AdminNewsPage() {
           >
             <DialogTrigger asChild>
               <Button type="primary" className="mr-2">
-                Sửa
+                Edit
               </Button>
             </DialogTrigger>
             <DialogContent className="max-w-6xl w-[95vw] max-h-[95vh]">
               <DialogHeader>
-                <DialogTitle>Sửa bài viết</DialogTitle>
+                <DialogTitle>Edit Post</DialogTitle>
                 <DialogDescription>
-                  Chỉnh sửa thông tin bài viết. Lưu ý rằng thay đổi sẽ ảnh hưởng
-                  đến bài viết, hiển thị lên trang chủ.
+                  Edit the post information. Note that changes will affect the
+                  post and be displayed on the homepage. Make sure to fill in
+                  all required fields.
                 </DialogDescription>
               </DialogHeader>
               <BlogEditor post={record} onSave={handleSave} />
@@ -115,21 +116,21 @@ export default function AdminNewsPage() {
           <AlertDialog>
             <AlertDialogTrigger asChild>
               <Button type="primary" danger>
-                Xóa
+                Delete
               </Button>
             </AlertDialogTrigger>
             <AlertDialogContent>
               <AlertDialogHeader>
-                <AlertDialogTitle>Xác nhận xóa</AlertDialogTitle>
+                <AlertDialogTitle>Confirm Delete</AlertDialogTitle>
                 <AlertDialogDescription>
-                  Bạn có chắc chắn muốn xóa bài viết này? Hành động này không
-                  thể hoàn tác.
+                  Are you sure you want to delete this post? This action cannot
+                  be undone.
                 </AlertDialogDescription>
               </AlertDialogHeader>
               <AlertDialogFooter>
-                <AlertDialogCancel>Hủy</AlertDialogCancel>
+                <AlertDialogCancel>Cancel</AlertDialogCancel>
                 <AlertDialogAction onClick={() => handleDelete(record._id)}>
-                  Xóa
+                  Delete
                 </AlertDialogAction>
               </AlertDialogFooter>
             </AlertDialogContent>
@@ -141,18 +142,18 @@ export default function AdminNewsPage() {
 
   return (
     <div className="p-8">
-      <h1 className="text-3xl font-bold text-primary mb-8">Quản lý tin tức</h1>
+      <h1 className="text-3xl font-bold text-primary mb-8">News Management</h1>
       <Dialog open={isDialogOpen} onOpenChange={setIsDialogOpen}>
         <DialogTrigger asChild>
           <button className="px-4 py-2 mb-6 float-right bg-blue-500 text-white rounded hover:bg-blue-600">
-            Đăng bài
+            Create Post
           </button>
         </DialogTrigger>
         <DialogContent className="max-w-5xl w-full">
           <DialogHeader>
-            <h2 className="text-xl font-semibold">Tạo bài viết mới</h2>
+            <h2 className="text-xl font-semibold">Create New Post</h2>
             <DialogTitle className="text-sm text-gray-500">
-              Viết nội dung cho bài viết của bạn
+              Write content for your post
             </DialogTitle>
           </DialogHeader>
           <BlogEditor onSave={handleSave} />

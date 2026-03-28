@@ -18,7 +18,7 @@ export default function BlogEditor({
 
   const editor = useEditor({
     extensions: [StarterKit, Image],
-    content: "<p>Viết nội dung...</p>",
+    content: "<p>Write content...</p>",
     immediatelyRender: false,
     editorProps: {
       attributes: { class: "prose focus:outline-none min-h-[400px] p-4" },
@@ -56,7 +56,7 @@ export default function BlogEditor({
   return (
     <div className="rounded-lg bg-white shadow-inner max-h-[50vh] overflow-y-auto p-4">
       <div className="mb-6 flex flex-col gap-2">
-        <p className="font-medium text-gray-700">Ảnh đại diện bài viết</p>
+        <p className="font-medium text-gray-700">Post Thumbnail</p>
         <div className="flex items-center gap-4">
           {thumbnail && (
             <img
@@ -66,7 +66,7 @@ export default function BlogEditor({
             />
           )}
           <label className="cursor-pointer bg-gray-100 px-4 py-2 rounded border hover:bg-gray-200 text-sm">
-            {isUploading ? "Đang tải..." : "Chọn ảnh Thumbnail"}
+            {isUploading ? "Processing..." : "Select Thumbnail Image"}
             <input
               type="file"
               className="hidden"
@@ -79,7 +79,7 @@ export default function BlogEditor({
       {/* TIÊU ĐỀ */}
       <input
         type="text"
-        placeholder="Tiêu đề bài viết..."
+        placeholder="Post Title..."
         value={title}
         onChange={(e) => setTitle(e.target.value)}
         className="w-full py-2 border-b text-2xl font-bold mb-4 focus:outline-none focus:border-blue-500"
@@ -101,7 +101,7 @@ export default function BlogEditor({
         </button>
 
         <label className="p-1 px-3 border rounded bg-blue-50 cursor-pointer text-sm flex items-center gap-1">
-          📷 Chèn ảnh vào bài
+          📷 Add image on post
           <input type="file" className="hidden" onChange={handleEditorImage} />
         </label>
       </div>
@@ -114,7 +114,7 @@ export default function BlogEditor({
         disabled={isUploading}
         className="float-right mt-4 ml-auto bg-green-600 text-white px-6 py-1 rounded hover:opacity-90 disabled:bg-gray-400"
       >
-        {isUploading ? "Đang xử lý..." : "Lưu bài"}
+        {isUploading ? "Processing..." : "Save Post"}
       </button>
     </div>
   );

@@ -31,7 +31,9 @@ export const useOrder = () => {
 
       if (!res.ok) {
         // Lấy message từ backend trả về (nếu có) thay vì câu chung chung
-        throw new Error(data.message || data.error || "Lỗi khi tạo đơn hàng");
+        throw new Error(
+          data.message || data.error || "Some errors occur when creating order",
+        );
       }
 
       setOrder(data); // Lưu vào state để dùng nếu cần
@@ -50,7 +52,7 @@ export const useOrder = () => {
     setLoading(true);
     try {
       const res = await fetch(`/api/order/${id}`);
-      if (!res.ok) throw new Error("Không tìm thấy đơn hàng");
+      if (!res.ok) throw new Error("Order not found");
 
       const data = await res.json();
       setOrder(data);
@@ -106,7 +108,7 @@ export const useOrder = () => {
       });
     } catch (err: any) {
       setError(err.message);
-      toast.error("Cập nhật trạng thái thất bại");
+      toast.error("Failed to update order status");
     } finally {
       setLoading(false);
     }

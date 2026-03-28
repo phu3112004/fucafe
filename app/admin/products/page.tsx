@@ -72,15 +72,15 @@ const AdminProductsPage = () => {
           >
             <DialogTrigger asChild>
               <Button type="primary" className="mr-2">
-                Sửa
+                Edit
               </Button>
             </DialogTrigger>
             <DialogContent>
               <DialogHeader>
-                <DialogTitle>Sửa sản phẩm</DialogTitle>
+                <DialogTitle>Edit Product</DialogTitle>
                 <DialogDescription>
-                  Chỉnh sửa thông tin sản phẩm. Lưu ý rằng thay đổi sẽ ảnh hưởng
-                  đến sản phẩm, danh mục và trang chủ.
+                  Edit product information. Note that changes will affect the
+                  product, category, and homepage.
                 </DialogDescription>
               </DialogHeader>
               <AdminProductModal
@@ -95,22 +95,22 @@ const AdminProductsPage = () => {
           <AlertDialog>
             <AlertDialogTrigger asChild>
               <Button type="primary" danger>
-                Xóa
+                Delete
               </Button>
             </AlertDialogTrigger>
             <AlertDialogContent>
               <AlertDialogHeader>
-                <AlertDialogTitle>Xác nhận xóa</AlertDialogTitle>
+                <AlertDialogTitle>Confirm Delete</AlertDialogTitle>
                 <AlertDialogDescription>
-                  Bạn có chắc chắn muốn xóa sản phẩm này? Hành động này không
-                  thể hoàn tác và sẽ ảnh hưởng đến trang chủ, danh mục và đơn
-                  hàng liên quan.
+                  Are you sure you want to delete this product? This action
+                  cannot be undone and will affect the homepage, category, and
+                  related orders.
                 </AlertDialogDescription>
               </AlertDialogHeader>
               <AlertDialogFooter>
-                <AlertDialogCancel>Hủy</AlertDialogCancel>
+                <AlertDialogCancel>Cancel</AlertDialogCancel>
                 <AlertDialogAction onClick={() => deleteProduct(record._id)}>
-                  Xóa
+                  Delete
                 </AlertDialogAction>
               </AlertDialogFooter>
             </AlertDialogContent>
@@ -121,19 +121,21 @@ const AdminProductsPage = () => {
   ];
   return (
     <div className="p-4 md:p-8 max-w-7xl mx-auto">
-      <h1 className="text-3xl font-bold text-primary mb-8">Quản lý sản phẩm</h1>
+      <h1 className="text-3xl font-bold text-primary mb-8">
+        Product Management
+      </h1>
       <Dialog open={isAddOpen} onOpenChange={setIsAddOpen}>
         <DialogTrigger asChild>
           <Button type="primary" className="mb-4 float-right">
-            +Thêm Sản Phẩm Mới
+            +Add New Product
           </Button>
         </DialogTrigger>
         <DialogContent>
           <DialogHeader>
-            <DialogTitle>Thêm sản phẩm</DialogTitle>
+            <DialogTitle>Add Product</DialogTitle>
             <DialogDescription>
-              Lưu ý: Thêm sản phẩm mới sẽ ảnh hưởng đến trang chủ và các danh
-              mục.
+              Note: Adding a new product will affect the homepage and
+              categories.
             </DialogDescription>
           </DialogHeader>
           <AdminProductModal

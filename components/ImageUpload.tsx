@@ -42,7 +42,7 @@ export default function ImageUpload({ onUpload }: ImageUploadProps) {
         setPreview(data.secure_url); // Hiện ảnh xem trước
       }
     } catch (error) {
-      alert("Lỗi upload ảnh!");
+      alert("Failed to upload image!");
     } finally {
       setUploading(false);
     }
@@ -63,11 +63,11 @@ export default function ImageUpload({ onUpload }: ImageUploadProps) {
             onClick={() => setPreview(null)}
             className="absolute top-0 right-0 bg-red-500 text-white p-1 text-xs rounded-bl"
           >
-            Xóa
+            Delete
           </button>
         </div>
       ) : (
-        <div className="text-gray-500 text-sm">Chưa có ảnh nào</div>
+        <div className="text-gray-500 text-sm">No image selected</div>
       )}
 
       {/* Nút chọn file (Ẩn đi và thay bằng Label đẹp hơn nếu muốn) */}
@@ -81,7 +81,7 @@ export default function ImageUpload({ onUpload }: ImageUploadProps) {
 
       {uploading && (
         <p className="text-blue-600 text-sm animate-pulse">
-          Đang tải lên mây...
+          Uploading image...
         </p>
       )}
     </div>

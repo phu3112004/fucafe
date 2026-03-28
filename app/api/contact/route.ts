@@ -9,7 +9,10 @@ export async function POST(request: Request) {
     const newContact = await Contact.create(body);
     return NextResponse.json(newContact, { status: 201 });
   } catch (error) {
-    return NextResponse.json({ message: "Lỗi gửi liên hệ" }, { status: 500 });
+    return NextResponse.json(
+      { message: "Error submitting contact form" },
+      { status: 500 },
+    );
   }
 }
 
@@ -20,7 +23,7 @@ export async function GET() {
     return NextResponse.json(contacts);
   } catch (error) {
     return NextResponse.json(
-      { message: "Lỗi lấy danh sách liên hệ" },
+      { message: "Error fetching contact list" },
       { status: 500 },
     );
   }

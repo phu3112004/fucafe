@@ -35,11 +35,10 @@ const AdminOrdersPage = () => {
 
     try {
       await updateOrderStatus(orderId, newStatus);
-      toast.success("Cập nhật trạng thái thành công");
+      toast.success("Cập nhật trạng thái thành công!");
     } catch (error) {
       setOrders(oldOrders);
-      console.error("Update status failed:", error);
-      toast.error("Lỗi cập nhật, đã hoàn tác!");
+      toast.error("Update status failed:");
     } finally {
       setUpdatingId(null);
     }
@@ -47,7 +46,7 @@ const AdminOrdersPage = () => {
 
   const columns = [
     {
-      title: "Mã đơn",
+      title: "Order ID",
       dataIndex: "_id",
       render: (id: string) => (
         <span className="font-mono text-gray-500">
@@ -56,7 +55,7 @@ const AdminOrdersPage = () => {
       ),
     },
     {
-      title: "Khách hàng",
+      title: "Customer",
       render: (record: any) => (
         <div className="flex items-center gap-2">
           <Avatar
@@ -73,16 +72,16 @@ const AdminOrdersPage = () => {
       ),
     },
     {
-      title: "Loại đơn",
+      title: "Order Type",
       dataIndex: "deliveryMethod",
       render: (method: string) => (
         <Tag color={method === "PICKUP" ? "cyan" : "blue"}>
-          {method === "PICKUP" ? "ĐẾN LẤY" : "GIAO HÀNG"}
+          {method === "PICKUP" ? "Pickup" : "Delivery"}
         </Tag>
       ),
     },
     {
-      title: "Tổng tiền",
+      title: "Total Amount",
       dataIndex: "totalAmount",
       render: (val: number) => (
         <span className="font-bold text-[#6F4E37]">
@@ -94,7 +93,7 @@ const AdminOrdersPage = () => {
       ),
     },
     {
-      title: "Trạng thái (Flow chuẩn)",
+      title: "Status",
       key: "status",
       width: 250,
       filters: status.map((s) => ({ text: s.label, value: s.value })),
@@ -141,7 +140,7 @@ const AdminOrdersPage = () => {
       <div className="bg-gray-50 p-4 rounded-md border border-gray-200">
         <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
           {/* CỘT 1: DANH SÁCH MÓN ĂN */}
-          <Card title="Danh sách món" size="small" variant="borderless">
+          <Card title="Product List" size="small" variant="borderless">
             {record.items.map((item: any, idx: number) => (
               <div
                 key={item._id || item.productId}
@@ -166,21 +165,24 @@ const AdminOrdersPage = () => {
             ))}
           </Card>
 
-          <Card title="Thông tin chi tiết" size="small" variant="borderless">
+          <Card title="Detail Information" size="small" variant="borderless">
             <Descriptions column={1} size="small">
               <Descriptions.Item
                 label={
                   <span className="text-gray-500">
-                    <ClockCircleOutlined /> Ngày đặt
+                    <ClockCircleOutlined /> Order Date
                   </span>
                 }
               >
-                {new Date(record.createdAt).toLocaleString("vi-VN")}
+                {new Date(record.createdAt).toLocaleString("en-US", {
+                  dateStyle: "medium",
+                  timeStyle: "short",
+                })}
               </Descriptions.Item>
               <Descriptions.Item
                 label={
                   <span className="text-gray-500">
-                    <EnvironmentOutlined /> Người nhận
+                    <EnvironmentOutlined /> Customer Name & Address
                   </span>
                 }
               >
@@ -193,16 +195,16 @@ const AdminOrdersPage = () => {
                   </span>
                 </div>
               </Descriptions.Item>
-              <Descriptions.Item label="Ghi chú">
+              <Descriptions.Item label="Note">
                 {record.note ? (
                   <span className="text-red-500 font-medium">
                     {record.note}
                   </span>
                 ) : (
-                  "Không có"
+                  "No notes"
                 )}
               </Descriptions.Item>
-              <Descriptions.Item label="Thanh toán">
+              <Descriptions.Item label="Payment Method">
                 <Tag
                   color={
                     record.paymentMethod === "BANKING" ? "gold" : "default"
@@ -220,9 +222,7 @@ const AdminOrdersPage = () => {
 
   return (
     <div className="p-4 md:p-8 max-w-7xl mx-auto">
-      <h1 className="text-3xl font-bold text-primary mb-8">
-        Quản lý & Xử lý đơn hàng
-      </h1>
+      <h1 className="text-3xl font-bold text-primary mb-8">Order Management</h1>
       <Table
         rowKey={(record) => record._id}
         columns={columns}

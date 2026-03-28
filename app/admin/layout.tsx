@@ -1,7 +1,7 @@
 import AdminSidebar from "@/components/admin/AdminSidebar";
 
 export const metadata = {
-  title: "Trang Quản Trị - Fucafe",
+  title: "Admin - Fucafe",
 };
 
 export default function AdminLayout({

@@ -11,7 +11,7 @@ export async function GET() {
     return NextResponse.json(carousels);
   } catch (error) {
     return NextResponse.json(
-      { message: "Lỗi lấy danh sách banner" },
+      { message: "Error fetching banner list" },
       { status: 500 },
     );
   }
@@ -24,6 +24,9 @@ export async function POST(req: Request) {
     const newCarousel = await Carousel.create(body);
     return NextResponse.json(newCarousel, { status: 201 });
   } catch (error) {
-    return NextResponse.json({ message: "Lỗi tạo banner" }, { status: 500 });
+    return NextResponse.json(
+      { message: "Error creating banner" },
+      { status: 500 },
+    );
   }
 }

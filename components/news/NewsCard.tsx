@@ -22,7 +22,7 @@ const NewsCard = ({ item }: { item: News }) => {
       >
         <Card.Meta title={item.title} />
         <div style={{ marginTop: "10px", fontSize: "12px", color: "#8c8c8c" }}>
-          {new Date(item.createdAt).toLocaleDateString("vi-VN", {
+          {new Date(item.createdAt).toLocaleDateString("en-US", {
             year: "numeric",
             month: "long",
             day: "numeric",

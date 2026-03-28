@@ -32,7 +32,7 @@ export async function PUT(
 
     if (!updatedProduct) {
       return NextResponse.json(
-        { message: "Không tìm thấy sản phẩm để cập nhật" },
+        { message: "Product not found" },
         { status: 404 },
       );
     }
@@ -40,7 +40,7 @@ export async function PUT(
   } catch (error: any) {
     console.error("Update Error:", error);
     return NextResponse.json(
-      { message: error.message || "Lỗi server khi cập nhật" },
+      { message: error.message || "Error updating product" },
       { status: 500 },
     );
   }

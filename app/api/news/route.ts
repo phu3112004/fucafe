@@ -9,7 +9,7 @@ export async function POST(request: Request) {
     // Trả về đúng cấu trúc mà Hook mong đợi: { data: ... }
     return NextResponse.json({ data: newNews }, { status: 201 });
   } catch (error) {
-    return NextResponse.json({ error: "Lỗi đăng bài" }, { status: 500 });
+    return NextResponse.json({ error: "Error creating news" }, { status: 500 });
   }
 }
 
@@ -20,6 +20,9 @@ export async function GET() {
     // Trả về { data: news } để đồng bộ với Hook
     return NextResponse.json({ data: news });
   } catch (error) {
-    return NextResponse.json({ error: "Lỗi lấy danh sách" }, { status: 500 });
+    return NextResponse.json(
+      { error: "Error fetching news list" },
+      { status: 500 },
+    );
   }
 }

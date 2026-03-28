@@ -11,8 +11,11 @@ export async function DELETE(
     const { id } = await params;
     await connectDB();
     await Carousel.findByIdAndDelete(id);
-    return NextResponse.json({ message: "Đã xóa banner" });
+    return NextResponse.json({ message: "Banner deleted successfully" });
   } catch (error) {
-    return NextResponse.json({ message: "Lỗi xóa" }, { status: 500 });
+    return NextResponse.json(
+      { message: "Error deleting banner" },
+      { status: 500 },
+    );
   }
 }

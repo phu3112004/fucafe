@@ -45,38 +45,42 @@ const CheckoutPage = () => {
 
   const columns = [
     {
-      title: "STT",
+      title: "#",
       dataIndex: "index",
       key: "index",
       render: (_: any, __: any, index: number) => index + 1,
       width: 60,
     },
     {
-      title: "Hình Ảnh",
+      title: "Image",
       dataIndex: "image",
       key: "image",
       render: (image: string) => (
-        <img src={image} alt="SP" className="w-16 h-16 object-cover rounded" />
+        <img
+          src={image}
+          alt="Product Image"
+          className="w-16 h-16 object-cover rounded"
+        />
       ),
     },
-    { title: "Tên", dataIndex: "name", key: "name" },
+    { title: "Name", dataIndex: "name", key: "name" },
     {
-      title: "Giá",
+      title: "Price",
       dataIndex: "price",
       key: "price",
       render: (price: number) => price.toLocaleString("vi-VN") + " đ",
     },
-    { title: "SL", dataIndex: "quantity", key: "quantity" },
+    { title: "Quantity", dataIndex: "quantity", key: "quantity" },
   ];
 
   // Hàm xử lý khi bấm Thanh Toán
   const handleCheckout = () => {
     if (!user) {
-      toast.error("Vui lòng đăng nhập để đặt hàng.");
+      toast.error("Please log in to place an order!");
       return;
     }
     if (items.length === 0) {
-      toast.error("Giỏ hàng trống.");
+      toast.error("Your cart is empty.");
       return;
     }
     if (deliveryMethod === "DELIVERY") {
@@ -85,12 +89,12 @@ const CheckoutPage = () => {
         !shippingInfo.phone ||
         !shippingInfo.address
       ) {
-        toast.error("Vui lòng điền đầy đủ thông tin giao hàng.");
+        toast.error("Please fill in all the required shipping information.");
         return;
       }
     } else {
       if (!shippingInfo.fullName || !shippingInfo.phone || !pickupTime) {
-        toast.error("Vui lòng điền đầy đủ thông tin nhận hàng.");
+        toast.error("Please fill in all the required pickup information.");
         return;
       }
     }
@@ -109,7 +113,7 @@ const CheckoutPage = () => {
       totalAmount,
       deliveryMethod,
       // Nếu là PICKUP thì lấy giờ, DELIVERY thì lấy địa chỉ & phương thức thanh toán
-      note: deliveryMethod === "PICKUP" ? `Giờ lấy: ${pickupTime}` : "",
+      note: deliveryMethod === "PICKUP" ? `Time to pick up: ${pickupTime}` : "",
       shippingAddress: shippingInfo,
       paymentMethod: deliveryMethod === "DELIVERY" ? paymentMethod : "COD", // Pickup mặc định trả sau
     };
@@ -125,14 +129,14 @@ const CheckoutPage = () => {
   return (
     <div className="px-4 md:px-16 py-8 bg-gray-50 min-h-screen">
       <h1 className="text-3xl font-bold mb-6 text-primary text-center">
-        Xác nhận đơn hàng
+        Checkout Confirmation
       </h1>
 
       <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
         {/* CỘT TRÁI: DANH SÁCH MÓN */}
         <div className="lg:col-span-2">
           <div className="bg-white p-6 rounded-lg shadow-sm">
-            <h3 className="text-lg font-bold mb-4">Danh sách món</h3>
+            <h3 className="text-lg font-bold mb-4">Order Summary</h3>
             <Table
               columns={columns}
               dataSource={items}
@@ -146,7 +150,7 @@ const CheckoutPage = () => {
         <div className="lg:col-span-1">
           <div className="bg-white p-6 rounded-lg shadow-sm sticky top-24">
             {/* 1. CHỌN PHƯƠNG THỨC GIAO HÀNG */}
-            <h3 className="text-lg font-bold mb-4">Phương thức nhận hàng</h3>
+            <h3 className="text-lg font-bold mb-4">Delivery Method</h3>
             <Radio.Group
               onChange={(e) => setDeliveryMethod(e.target.value)}
               value={deliveryMethod}
@@ -157,13 +161,13 @@ const CheckoutPage = () => {
                   value="PICKUP"
                   className="border p-3 rounded w-full hover:border-[#6F4E37]"
                 >
-                  <span className="font-semibold">Đến cửa hàng nhận</span>
+                  <span className="font-semibold">Pick up at store</span>
                 </Radio>
                 <Radio
                   value="DELIVERY"
                   className="border p-3 rounded w-full hover:border-[#6F4E37]"
                 >
-                  <span className="font-semibold">Giao hàng tận nơi</span>
+                  <span className="font-semibold">Delivery to address</span>
                 </Radio>
               </Space>
             </Radio.Group>
@@ -174,13 +178,13 @@ const CheckoutPage = () => {
             <div>
               <h4 className="font-semibold mb-2">
                 {deliveryMethod === "PICKUP"
-                  ? "Thông tin nhận hàng"
-                  : "Thông tin giao hàng"}
+                  ? "Pickup Information"
+                  : "Shipping Information"}
               </h4>
               <Space orientation="vertical" className="w-full">
                 <Input
                   prefix={<UserOutlined />}
-                  placeholder="Họ và tên người nhận"
+                  placeholder="Full Name"
                   onChange={(e) =>
                     setShippingInfo({
                       ...shippingInfo,
@@ -190,7 +194,7 @@ const CheckoutPage = () => {
                 />
                 <Input
                   prefix={<PhoneOutlined />}
-                  placeholder="Số điện thoại"
+                  placeholder="Phone Number"
                   onChange={(e) =>
                     setShippingInfo({
                       ...shippingInfo,
@@ -202,13 +206,13 @@ const CheckoutPage = () => {
                   <>
                     <Input
                       prefix={<ClockCircleOutlined />}
-                      placeholder="Thời gian đến lấy (VD: 15:30)"
+                      placeholder="Time to pick up (e.g., 15:30)"
                       size="large"
                       value={pickupTime}
                       onChange={(e) => setPickupTime(e.target.value)}
                     />
                     <p className="text-xs text-gray-500 mt-2">
-                      * Địa chỉ quán: 123 Đường Cà Phê, Quận 1.
+                      * Store address: 123 Coffee Street, District 1.
                     </p>
                   </>
                 )}
@@ -216,7 +220,7 @@ const CheckoutPage = () => {
                   <>
                     <Input
                       prefix={<HomeOutlined />}
-                      placeholder="Địa chỉ cụ thể (Số nhà, đường...)"
+                      placeholder="Specific Address (House Number, Street...)"
                       onChange={(e) =>
                         setShippingInfo({
                           ...shippingInfo,
@@ -232,7 +236,7 @@ const CheckoutPage = () => {
               <div className="animate-fade-in space-y-4">
                 <Divider />
                 <div>
-                  <h4 className="font-semibold mb-2">Thanh toán bằng:</h4>
+                  <h4 className="font-semibold mb-2">Payment Method:</h4>
                   <Radio.Group
                     onChange={(e) => setPaymentMethod(e.target.value)}
                     value={paymentMethod}
@@ -241,12 +245,12 @@ const CheckoutPage = () => {
                     <Space orientation="vertical" className="w-full">
                       <Radio value="COD">
                         <Space>
-                          <WalletOutlined /> Tiền mặt khi nhận hàng (COD)
+                          <WalletOutlined /> Cash on Delivery (COD)
                         </Space>
                       </Radio>
                       <Radio value="BANKING">
                         <Space>
-                          <BankOutlined /> Chuyển khoản ngân hàng
+                          <BankOutlined /> Bank Transfer
                         </Space>
                       </Radio>
                     </Space>
@@ -256,10 +260,10 @@ const CheckoutPage = () => {
                 {/* Nếu chọn Banking thì hiện số tài khoản */}
                 {paymentMethod === "BANKING" && (
                   <div className="bg-blue-50 p-3 rounded text-sm text-blue-800 border border-blue-200">
-                    <p className="font-bold">Ngân hàng MB Bank</p>
-                    <p>STK: 0999999999</p>
-                    <p>Chủ TK: NGUYEN VAN A</p>
-                    <p>Nội dung: SDT_TenKhachHang</p>
+                    <p className="font-bold">MB Bank</p>
+                    <p>Account: 0999999999</p>
+                    <p>Account Holder: NGUYEN VAN A</p>
+                    <p>Content: Phone_FullName</p>
                   </div>
                 )}
               </div>
@@ -269,7 +273,7 @@ const CheckoutPage = () => {
 
             {/* TỔNG TIỀN VÀ NÚT ĐẶT */}
             <div className="flex justify-between items-center mb-4">
-              <span className="text-lg font-bold">Tổng cộng:</span>
+              <span className="text-lg font-bold">Total:</span>
               <span className="text-2xl font-bold text-primary">
                 {totalAmount.toLocaleString("vi-VN", {
                   style: "currency",
@@ -282,7 +286,7 @@ const CheckoutPage = () => {
               onClick={handleCheckout}
               className="w-full bg-[#6F4E37] text-white py-3 rounded-lg font-bold text-lg hover:bg-[#5a3e2b] transition shadow-lg"
             >
-              ĐẶT HÀNG NGAY
+              PLACE ORDER
             </button>
           </div>
         </div>

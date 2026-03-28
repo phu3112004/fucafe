@@ -11,7 +11,7 @@ const useUsers = () => {
       const data = await res.json();
       setUsers(data);
     } catch (error) {
-      console.error("Lỗi tải user", error);
+      console.error("Error fetching users:", error);
     }
   };
 

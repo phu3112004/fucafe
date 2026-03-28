@@ -25,17 +25,17 @@ const Auth = () => {
       </DropdownMenuTrigger>
       <DropdownMenuContent>
         <DropdownMenuGroup>
-          <DropdownMenuLabel>Tài khoản</DropdownMenuLabel>
+          <DropdownMenuLabel>Account</DropdownMenuLabel>
           <DropdownMenuItem>
-            <Link href="/profile">Hồ sơ</Link>
+            <Link href="/profile">Profile</Link>
           </DropdownMenuItem>
           <DropdownMenuItem>
-            <Link href="/profile/orders">Đơn hàng</Link>
+            <Link href="/profile/orders">Orders</Link>
           </DropdownMenuItem>
         </DropdownMenuGroup>
         <DropdownMenuGroup>
           <DropdownMenuSeparator />
-          <DropdownMenuItem onClick={handleLogout}>Đăng xuất</DropdownMenuItem>
+          <DropdownMenuItem onClick={handleLogout}>Logout</DropdownMenuItem>
         </DropdownMenuGroup>
       </DropdownMenuContent>
     </DropdownMenu>

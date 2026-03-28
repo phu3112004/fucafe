@@ -92,16 +92,16 @@ const useProducts = () => {
 
     // Validate dữ liệu trước khi gửi
     if (!productForm.name) {
-      setError("Vui lòng điền Tên sản phẩm!");
+      setError("Product name cannot be empty!");
       return;
     } else if (productForm.price <= 0) {
-      setError("Giá sản phẩm phải lớn hơn 0!");
+      setError("Product price must be greater than 0!");
       return;
     } else if (!productForm.category) {
-      setError("Vui lòng chọn danh mục sản phẩm!");
+      setError("Please select a product category!");
       return;
     } else if (!productForm.image) {
-      setError("Vui lòng tải lên hình ảnh sản phẩm!");
+      setError("Please upload a product image!");
       return;
     }
 

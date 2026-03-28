@@ -25,12 +25,14 @@ const AdminContactsPage = () => {
       key: "createdAt",
       sorter: (a: any, b: any) =>
         new Date(a.createdAt).getTime() - new Date(b.createdAt).getTime(),
-      render: (date: string) => new Date(date).toLocaleString(),
+      render: (date: string) => new Date(date).toLocaleString("en-US"),
     },
   ];
   return (
     <div className="p-8 max-w-4xl mx-auto">
-      <h1 className="text-3xl font-bold text-primary mb-8">Quản lý liên hệ</h1>
+      <h1 className="text-3xl font-bold text-primary mb-8">
+        Contact Management
+      </h1>
       <Table
         rowKey={"_id"}
         columns={columns}

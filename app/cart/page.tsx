@@ -19,27 +19,27 @@ const CartPage = () => {
   const { items, updateQuantity, removeItem } = useCartStore();
   const columns = [
     {
-      title: "STT",
+      title: "#",
       dataIndex: "index",
       key: "index",
       render: (_: any, __: any, index: number) => index + 1,
     },
     {
-      title: "Hình Ảnh",
+      title: "Image",
       dataIndex: "image",
       key: "image",
       render: (image: string) => (
         <img
           src={image}
-          alt="Hình Ảnh Sản Phẩm"
+          alt="Product Image"
           className="w-16 h-16 object-cover rounded"
         />
       ),
     },
-    { title: "Tên", dataIndex: "name", key: "name" },
-    { title: "Giá", dataIndex: "price", key: "price" },
+    { title: "Name", dataIndex: "name", key: "name" },
+    { title: "Price", dataIndex: "price", key: "price" },
     {
-      title: "Số Lượng",
+      title: "Quantity",
       dataIndex: "quantity",
       key: "quantity",
       render: (quantity: number, record: any) => (
@@ -58,7 +58,7 @@ const CartPage = () => {
       ),
     },
     {
-      title: "Tổng Giá",
+      title: "Total Price",
       key: "total",
       render: (_: any, record: any) => (
         <span className="font-bold text-primary">
@@ -70,7 +70,7 @@ const CartPage = () => {
       ),
     },
     {
-      title: "Xoá",
+      title: "Delete",
       key: "action",
       render: (_: any, record: any) => (
         <Dialog>
@@ -81,7 +81,9 @@ const CartPage = () => {
           </DialogTrigger>
           <DialogContent>
             <DialogHeader>
-              <DialogTitle>Bạn có muốn xóa sản phẩm này?</DialogTitle>
+              <DialogTitle>
+                Are you sure you want to delete this product?
+              </DialogTitle>
               <DialogDescription>
                 This action cannot be undone. This will permanently delete your
                 account and remove your data from our servers.
@@ -90,10 +92,10 @@ const CartPage = () => {
             <DialogFooter>
               <DialogClose asChild>
                 <Button color="primary" variant="solid">
-                  Hủy
+                  Cancel
                 </Button>
               </DialogClose>
-              <Button onClick={() => removeItem(record._id)}>Có</Button>
+              <Button onClick={() => removeItem(record._id)}>Yes</Button>
             </DialogFooter>
           </DialogContent>
         </Dialog>
@@ -112,7 +114,7 @@ const CartPage = () => {
         <div className="mt-8 flex justify-end">
           <div className="bg-gray-50 p-6 rounded-lg shadow-sm min-w-[300px]">
             <div className="flex justify-between mb-4 text-xl font-bold">
-              <span>Tổng cộng:</span>
+              <span>Total:</span>
               <span className="text-primary">
                 {useCartStore.getState().totalPrice.toLocaleString("vi-VN", {
                   style: "currency",
@@ -121,7 +123,7 @@ const CartPage = () => {
               </span>
             </div>
             <button className="w-full bg-[#6F4E37] text-white py-3 rounded hover:bg-[#5a3e2b] transition">
-              <Link href="/cart/checkout">Thanh toán ngay</Link>
+              <Link href="/cart/checkout">Checkout Now</Link>
             </button>
           </div>
         </div>

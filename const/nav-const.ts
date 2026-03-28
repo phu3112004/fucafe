@@ -1,18 +1,18 @@
 const navItem = [
   {
-    name: "Trang chủ",
+    name: "Home",
     href: "/",
   },
   {
-    name: "Giới thiệu",
+    name: "About",
     href: "/about",
   },
   {
-    name: "Liên hệ",
+    name: "Contact",
     href: "/contact",
   },
   {
-    name: "Tin tức",
+    name: "News",
     href: "/news",
   },
   {

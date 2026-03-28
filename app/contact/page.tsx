@@ -9,16 +9,16 @@ const ContactPage = () => {
     e.preventDefault();
     try {
       await addContact(e);
-      toast.success("Gửi liên hệ thành công!");
+      toast.success("Send contact information successfully!");
     } catch (error) {
-      toast.error("Gửi liên hệ thất bại. Vui lòng thử lại.");
-      console.error("Lỗi gửi liên hệ", error);
+      toast.error("Failed to send contact information. Please try again.");
+      console.error("Error sending contact information", error);
     }
   };
   const contactInfo = [
     {
       icon: <MapPinned />,
-      text: "Số 123, Đường ABC, Quận 1, TP. Hồ Chí Minh",
+      text: "123 Coffee Street, Ho Chi Minh City, Vietnam",
     },
     {
       icon: <Phone />,
@@ -31,10 +31,10 @@ const ContactPage = () => {
   ];
   const fields = [
     {
-      label: "Họ và tên",
+      label: "Full Name",
       name: "name",
       type: "text",
-      placeholder: "Nguyễn Văn A",
+      placeholder: "John Doe",
       fullWidth: true,
     },
     {
@@ -45,7 +45,7 @@ const ContactPage = () => {
       fullWidth: false,
     },
     {
-      label: "Số điện thoại",
+      label: "Phone Number",
       name: "phone",
       type: "tel",
       placeholder: "0901234567",
@@ -57,16 +57,16 @@ const ContactPage = () => {
       <div className="max-w-7xl mx-auto">
         <div className="text-center mb-12">
           <h1 className="text-3xl font-extrabold text-gray-900 sm:text-4xl">
-            Liên hệ với chúng tôi
+            Contact Us
           </h1>
           <p className="mt-4 text-lg text-gray-500">
-            Chúng tôi luôn sẵn sàng lắng nghe và hỗ trợ bạn 24/7.
+            We're always here to listen and help you 24/7.
           </p>
         </div>
 
         <div className="grid grid-cols-1 md:grid-cols-2 gap-8 bg-white rounded-2xl shadow-xl overflow-hidden">
           <div className="bg-[url(/coffee.gif)] bg-cover bg-center bg-no-repeat p-8 text-white">
-            <h2 className="text-2xl font-semibold mb-6">Thông tin liên lạc</h2>
+            <h2 className="text-2xl font-semibold mb-6">Contact Information</h2>
 
             <div className="space-y-6 mb-8">
               {contactInfo.map((info, index) => (
@@ -122,7 +122,7 @@ const ContactPage = () => {
                   htmlFor="message"
                   className="block text-sm font-medium text-gray-700 mb-1"
                 >
-                  Nội dung liên hệ
+                  Message
                 </label>
                 <textarea
                   id="message"
@@ -130,7 +130,7 @@ const ContactPage = () => {
                   rows={4}
                   value={formData.message}
                   onChange={(e) => setFormValue("message", e.target.value)}
-                  placeholder="Bạn cần chúng tôi giúp gì?"
+                  placeholder="What can we help you with?"
                   className="block w-full px-4 py-3 rounded-md border-gray-300 shadow-sm focus:ring-primary-500 focus:border-primary-500 border transition-all"
                 />
               </div>
@@ -140,7 +140,7 @@ const ContactPage = () => {
                 disabled={loading}
                 className="w-full py-3 px-6 rounded-md text-white bg-primary hover:bg-primary-700 disabled:bg-gray-400 transition-all font-medium"
               >
-                {loading ? "Đang gửi..." : "Gửi lời nhắn"}
+                {loading ? "Sending..." : "Send Message"}
               </button>
             </form>
           </div>

@@ -40,20 +40,20 @@ export async function PATCH(request: Request, props: Props) {
     const order = await Order.findById(orderId);
 
     if (!order) {
-      return NextResponse.json(
-        { message: "Không tìm thấy đơn hàng" },
-        { status: 404 },
-      );
+      return NextResponse.json({ message: "Order not found" }, { status: 404 });
     } else {
       order.status = status;
       await order.save();
       return NextResponse.json(
-        { message: "Cập nhật trạng thái thành công" },
+        { message: "Status updated successfully" },
         { status: 200 },
       );
     }
   } catch (error) {
-    console.error("Lỗi cập nhật trạng thái đơn hàng:", error);
-    return NextResponse.json({ message: "Lỗi Server" }, { status: 500 });
+    console.error("Error updating order status:", error);
+    return NextResponse.json(
+      { message: "Error updating order status" },
+      { status: 500 },
+    );
   }
 }
